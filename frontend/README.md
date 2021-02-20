@@ -1,20 +1,11 @@
 # frontend
 
-## Build Setup
+serve with hot reload at localhost:3000
 
-```bash
-# install dependencies
-$ npm install
+npm run dev
 
-# serve with hot reload at localhost:3000
-$ npm run dev
+# backend
 
-# build for production and launch server
-$ npm run build
-$ npm run start
+To start the database run the following command in the terminal from your project root folder. Leave the terminal window open.
 
-# generate static project
-$ npm run generate
-```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+docker-compose -f docker-compose-dev.yml up

@@ -1,73 +1,92 @@
 <template>
   <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        frontend
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
+    <h1 class="title">
+      Login
+    </h1>
+    <form action="post" @submit.prevent="performLogin">
+      <p>
+        <input
+          id="username"
+          v-model="username"
+          type="text"
+          name="username"
+          placeholder="Username"
+          required
+          autofocus
         >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
+      </p>
+      <p>
+        <input
+          id="password"
+          v-model="password"
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
         >
-          GitHub
-        </a>
-      </div>
-    </div>
+      </p>
+      <button type="submit">
+        Sign in
+      </button>
+    </form>
   </div>
 </template>
-
 <script>
-export default {}
-</script>
 
+export default {
+  data () {
+    return {
+      username: '',
+      password: ''
+    }
+  },
+  methods: {
+    async performLogin () {
+      if (await this.$services.login.performLogin(this.username, this.password)) {
+        this.$router.push('todo')
+      } else {
+        this.username = ''
+        this.password = ''
+      }
+    }
+  }
+}
+</script>
 <style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+form {
+  width: 200px;
+  margin: auto;
   text-align: center;
 }
 
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
+input {
+  width: 100%;
+  border: none;
+  border-bottom: 1px black solid;
+  background: none;
+  height: 50px;
+  line-height: 50px;
+  font-size: 24px;
+  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  outline: none;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+button {
+  width: 100%;
+  height: 50px;
+  border: none;
+  background-color: #f0c808;
+  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+  margin-top: 20px;
+  border-radius: 10px;
 }
 </style>

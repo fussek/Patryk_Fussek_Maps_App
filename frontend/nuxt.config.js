@@ -1,47 +1,78 @@
 export default {
-  // Global page headers: https://go.nuxtjs.dev/config-head
+  mode: "universal",
+  /*
+   ** Headers of the page
+   */
   head: {
-    title: 'frontend',
-    htmlAttrs: {
-      lang: 'en'
-    },
+    title: process.env.npm_package_name || "",
     meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' }
+      { charset: "utf-8" },
+      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      {
+        hid: "description",
+        name: "description",
+        content: process.env.npm_package_description || ""
+      }
     ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-    ]
+    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
   },
-
-  // Global CSS: https://go.nuxtjs.dev/config-css
-  css: [
-  ],
-
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-  ],
-
-  // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
-
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
+  /*
+   ** Customize the progress-bar color
+   */
+  loading: { color: "#fff" },
+  /*
+   ** Global CSS
+   */
+  css: [],
+  /*
+   ** Plugins to load before mounting the App
+   */
+  plugins: ["~/plugins/services.js", "~/plugins/interceptor.js"],
+  /*
+   ** Nuxt.js dev-modules
+   */
   buildModules: [
-    // https://go.nuxtjs.dev/eslint
-    '@nuxtjs/eslint-module'
+    // Doc: https://github.com/nuxt-community/eslint-module
+    "@nuxtjs/eslint-module"
   ],
-
-  // Modules: https://go.nuxtjs.dev/config-modules
+  /*
+   ** Nuxt.js modules
+   */
   modules: [
-    // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    // Doc: https://axios.nuxtjs.org/usage
+    "@nuxtjs/axios"
   ],
-
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
-
-  // Build Configuration: https://go.nuxtjs.dev/config-build
+  /*
+   ** Axios module configuration
+   ** See https://axios.nuxtjs.org/options
+   */
+  axios: {
+    proxy: true,
+    host: "localhost",
+    prefix: "/api/"
+  },
+  proxy: {
+    "/api/": process.env.PROXY_API || "http://localhost:8080/"
+  },
+  /*
+   ** Build configuration
+   */
   build: {
+    /*
+     ** You can extend webpack config here
+     */
+    extend(config, ctx) {
+      if (ctx.isDev && ctx.isClient) {
+        config.module.rules.push({
+          enforce: "pre",
+          test: /\.(js|vue)$/,
+          loader: "eslint-loader",
+          exclude: /(node_modules)/,
+          options: {
+            fix: true
+          }
+        });
+      }
+    }
   }
-}
+};
