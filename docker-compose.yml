@@ -1,0 +1,21 @@
+version: '3'
+services:
+  playground-web-db:
+    image: mongo:4.2.2
+    environment:
+      MONGO_INITDB_DATABASE: playground-web
+    ports:
+      - 27017:27017
+  playground-web-frontend:
+    image: playground-web-frontend:latest
+    environment:
+      PORT: 3000
+      PROXY_API: http://playground-web-backend:8080/
+    ports:
+      - 3000:3000
+  playground-web-backend:
+    image: playground-web-backend:latest
+    environment:
+      MONGODB_URI: mongodb://playground-web-db:27017/playground-web
+    ports:
+      - 8080:8080
