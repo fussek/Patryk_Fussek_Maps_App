@@ -27,7 +27,11 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: ["~/plugins/services.js", "~/plugins/interceptor.js"],
+  plugins: [
+    "~/plugins/services.js",
+    "~/plugins/interceptor.js",
+    "~/plugins/mapsplugin.js"
+  ],
   /*
    ** Nuxt.js dev-modules
    */
@@ -58,6 +62,10 @@ export default {
    ** Build configuration
    */
   build: {
+    transpile: [
+      'vue2-google-maps',
+      'vue-browser-geolocation'
+    ],
     /*
      ** You can extend webpack config here
      */
