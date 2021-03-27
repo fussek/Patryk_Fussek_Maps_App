@@ -5,7 +5,8 @@
     </h1>
     <Header :show-add-task="showMap" @toggle-maps="toggleMaps" />
     <div v-if="showMap">
-      <Map />
+      <SavedPlacesList :places="places" />
+      <Map :places="places" />
     </div>
     <to-do-list :todos="todos" />
   </div>
@@ -16,36 +17,44 @@
 import ToDoList from '~/components/ToDoList.vue'
 import Map from '~/components/Map.vue'
 import Header from '~/components/Header.vue'
+import SavedPlacesList from '~/components/SavedPlacesList'
 
 export default {
   components: {
+    SavedPlacesList,
     ToDoList,
     Map,
     Header
   },
-  // The asyncData function is used to fetch data,
-  // which will then replace the corresponding variable in the data block.
-  // AsyncData is called whenever a page is loaded.
 
   async asyncData (ctx) {
     return {
       todos: await ctx.app.$services.todo.findAll()
     }
   },
-  // The data function returns an object that we can use in our template.
-  // We will need to work with an array to store our todos.
-  // We can not make any http request here.
+
   data () {
     return {
+      places: {
+        type: Array
+      },
       todos: {
         type: Array
       },
       showMap: false
     }
   },
+  async created () {
+    this.places = await this.fetchData()
+  },
   methods: {
     toggleMaps () {
       this.showMap = !this.showMap
+    },
+    async fetchData () {
+      const res = await fetch('http://localhost:5001/features')
+      const data = await res.json()
+      return data
     }
   }
 }

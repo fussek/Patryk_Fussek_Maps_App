@@ -1,0 +1,276 @@
+{
+  "features": [
+    {
+      "geometry" : {
+        "coordinates" : [ 14.4996140, 35.9147480 ],
+        "type" : "Point"
+      },
+      "properties" : {
+        "Google Maps URL" : "http://maps.google.com/?cid=9331982885498741863",
+        "Location" : {
+          "Address" : "6 St Margaret St, Sliema SLM 1979, Malta",
+          "Business Name" : "Corner Hostel",
+          "Country Code" : "MT",
+          "Geo Coordinates" : {
+            "Latitude" : "35.9147480",
+            "Longitude" : "14.4996140"
+          }
+        },
+        "Published" : "2021-03-16T08:34:07Z",
+        "Title" : "Corner Hostel",
+        "Updated" : "2021-03-16T08:34:07Z"
+      },
+      "type" : "Feature"
+    },{
+      "geometry" : {
+        "coordinates" : [ -0.0877321, 51.5078788 ],
+        "type" : "Point"
+      },
+      "properties" : {
+        "Google Maps URL" : "http://maps.google.com/?cid=11970049005355099052",
+        "Location" : {
+          "Address" : "London SE1 9RA, Wielka Brytania",
+          "Business Name" : "London Bridge",
+          "Country Code" : "GB",
+          "Geo Coordinates" : {
+            "Latitude" : "51.5078788",
+            "Longitude" : "-0.0877321"
+          }
+        },
+        "Published" : "2019-05-06T08:54:02Z",
+        "Title" : "London Bridge",
+        "Updated" : "2019-05-06T08:54:02Z"
+      },
+      "type" : "Feature"
+    },
+    {
+      "geometry" : {
+        "coordinates" : [ 2.1618162, 41.4194111 ],
+        "type" : "Point"
+      },
+      "properties" : {
+        "Google Maps URL" : "http://maps.google.com/?cid=1527149430569834832",
+        "Location" : {
+          "Address" : "Carrer de Marià Labèrnia, s/n, 08032 Barcelona, Hiszpania",
+          "Business Name" : "MUHBA Turó de la Rovira (Mirador de les bateries)",
+          "Country Code" : "ES",
+          "Geo Coordinates" : {
+            "Latitude" : "41.4194111",
+            "Longitude" : "2.1618162"
+          }
+        },
+        "Published" : "2017-10-05T20:47:37Z",
+        "Title" : "Bunkers del Carmel",
+        "Updated" : "2017-10-05T20:47:37Z"
+      },
+      "type" : "Feature"
+    },
+    {
+      "geometry" : {
+        "coordinates" : [ 6.1404813, 46.2266053 ],
+        "type" : "Point"
+      },
+      "properties" : {
+        "Google Maps URL" : "http://maps.google.com/?cid=13451108145528886387",
+        "Location" : {
+          "Address" : "1211 Geneva, Szwajcaria",
+          "Business Name" : "Palais des Nations",
+          "Country Code" : "CH",
+          "Geo Coordinates" : {
+            "Latitude" : "46.2266053",
+            "Longitude" : "6.1404813"
+          }
+        },
+        "Published" : "2020-08-31T17:51:39Z",
+        "Title" : "Palais des Nations",
+        "Updated" : "2020-08-31T17:51:39Z"
+      },
+      "type" : "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          13.2750892,
+          52.5857768
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "Google Maps URL": "http://maps.google.com/?cid=13258895300915230908",
+        "Location": {
+          "Address": "Borsigdamm, 13507 Berlin, Niemcy",
+          "Business Name": "Greenwich Promenade",
+          "Country Code": "DE",
+          "Geo Coordinates": {
+            "Latitude": "52.5857768",
+            "Longitude": "13.2750892"
+          }
+        },
+        "Published": "2020-03-18T14:32:18Z",
+        "Title": "Greenwichpromenade",
+        "Updated": "2020-03-18T14:32:18Z"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry" : {
+        "coordinates" : [ 11.1214561, 46.0673250 ],
+        "type" : "Point"
+      },
+      "properties" : {
+        "Google Maps URL" : "http://maps.google.com/?cid=16051614331309579993",
+        "Location" : {
+          "Address" : "Piazza del Duomo, 18, 38122 Trento TN, Włochy",
+          "Business Name" : "Piazza Duomo - Trento",
+          "Country Code" : "IT",
+          "Geo Coordinates" : {
+            "Latitude" : "46.0673250",
+            "Longitude" : "11.1214561"
+          }
+        },
+        "Published" : "2019-10-27T23:29:08Z",
+        "Title" : "Piazza Duomo",
+        "Updated" : "2019-10-27T23:29:08Z"
+      },
+      "type" : "Feature"
+    },
+    {
+      "geometry" : {
+        "coordinates" : [ 21.6305896, 39.7217044 ],
+        "type" : "Point"
+      },
+      "properties" : {
+        "Google Maps URL" : "http://maps.google.com/?cid=8153676780058456831",
+        "Location" : {
+          "Address" : "Kalabaka 422 00, Grecja",
+          "Business Name" : "Meteory",
+          "Country Code" : "GR",
+          "Geo Coordinates" : {
+            "Latitude" : "39.7217044",
+            "Longitude" : "21.6305896"
+          }
+        },
+        "Published" : "2019-05-05T19:31:21Z",
+        "Title" : "Meteora",
+        "Updated" : "2019-05-05T19:31:21Z"
+      },
+      "type" : "Feature"
+    },
+    {
+      "geometry" : {
+        "coordinates" : [ 15.3231826, 66.5523786 ],
+        "type" : "Point"
+      },
+      "properties" : {
+        "Google Maps URL" : "http://maps.google.com/?cid=14047631501850951207",
+        "Location" : {
+          "Address" : "Saltfjellveien 1850, 8630 Storforshei, Norwegia",
+          "Business Name" : "The Arctic Circle Trail",
+          "Country Code" : "NO",
+          "Geo Coordinates" : {
+            "Latitude" : "66.5523786",
+            "Longitude" : "15.3231826"
+          }
+        },
+        "Published" : "2017-08-31T06:46:21Z",
+        "Title" : "The Arctic Circle Trail",
+        "Updated" : "2017-08-31T06:46:21Z"
+      },
+      "type" : "Feature"
+    },
+    {
+      "geometry" : {
+        "coordinates" : [ -8.6162729, 41.1473563 ],
+        "type" : "Point"
+      },
+      "properties" : {
+        "Google Maps URL" : "http://maps.google.com/?cid=94155390668792436",
+        "Location" : {
+          "Address" : "R. do Carmo, 4050-164 Porto, Portugalia",
+          "Business Name" : "Igreja do Carmo",
+          "Country Code" : "PT",
+          "Geo Coordinates" : {
+            "Latitude" : "41.1473563",
+            "Longitude" : "-8.6162729"
+          }
+        },
+        "Published" : "2020-02-15T15:05:44Z",
+        "Title" : "Igreja do Carmo",
+        "Updated" : "2020-02-15T15:05:44Z"
+      },
+      "type" : "Feature"
+    },
+    {
+      "geometry" : {
+        "coordinates" : [ -5.3487317, 36.1322425 ],
+        "type" : "Point"
+      },
+      "properties" : {
+        "Google Maps URL" : "http://maps.google.com/?cid=6100863749097791560",
+        "Location" : {
+          "Address" : "Old Queen's Rd, Gibraltar GX11 1AA, Gibraltar",
+          "Business Name" : "Apes Den",
+          "Country Code" : "GI",
+          "Geo Coordinates" : {
+            "Latitude" : "36.1322425",
+            "Longitude" : "-5.3487317"
+          }
+        },
+        "Published" : "2018-10-07T23:31:42Z",
+        "Title" : "Apes Den",
+        "Updated" : "2018-10-07T23:31:42Z"
+      },
+      "type" : "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          13.3841250,
+          52.5234611
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "Google Maps URL": "http://maps.google.com/?cid=10413461319616103308",
+        "Location": {
+          "Address": "Reinhardtstraße 20, 10117 Berlin, Niemcy",
+          "Business Name": "Boros Foundation",
+          "Country Code": "DE",
+          "Geo Coordinates": {
+            "Latitude": "52.5234611",
+            "Longitude": "13.3841250"
+          }
+        },
+        "Published": "2020-03-06T15:36:18Z",
+        "Title": "Boros Foundation",
+        "Updated": "2020-03-06T15:36:18Z"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          13.4091223,
+          52.5152674
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "Google Maps URL": "http://maps.google.com/?cid=12670244620660116571",
+        "Location": {
+          "Address": "Am Krögel 2, 10179 Berlin, Niemcy",
+          "Business Name": "The Greens - Coffee and Plants",
+          "Country Code": "DE",
+          "Geo Coordinates": {
+            "Latitude": "52.5152674",
+            "Longitude": "13.4091223"
+          }
+        },
+        "Published": "2020-03-06T15:35:58Z",
+        "Title": "The Greens Coffee and Plants",
+        "Updated": "2020-03-06T15:35:58Z"
+      },
+      "type": "Feature"
+    }
+  ]
+}

@@ -1,22 +1,26 @@
 <template>
   <div class="container">
     <h1>Your coordinates:</h1>
-    <p>{{ coordinates.lat }} Latitude, {{ coordinates.lng }} Longitude</p>
+    <p>{{ coordinates.lat.toPrecision(8) }} Latitude, {{ coordinates.lng.toPrecision(8) }} Longitude</p>
 
-    <div>
+    <!--    the v-if required in order to be sure that the array is not empty, otherwise errors (async methods) -->
+    <div v-if="places.length > 0">
       <GmapMap
         :center="{lat:coordinates.lat, lng:coordinates.lng}"
-        :zoom="15"
-        map-type-id="terrain"
+        :zoom="4"
+        :options="mapStyle"
+        map-type-id="roadmap"
         style="width: 100%; height: 300px"
       >
         <GmapMarker
-          v-for="(m, index) in markers"
-          :key="index"
-          :position="m.position"
-          :clickable="true"
-          :draggable="true"
-          @click="center=m.position"
+          ref="myPosition"
+          :position="{lat:coordinates.lat, lng:coordinates.lng}"
+        />
+        <GmapMarker
+          v-for="place in places"
+          :key="place.id"
+          :ref="place.id"
+          :position="getPosition(place)"
         />
       </GmapMap>
     </div>
@@ -24,14 +28,26 @@
 </template>
 
 <script>
+import styles from 'assets/MapStyle'
 
 export default {
   name: 'Map',
+  props: {
+    places: {
+      type: Array,
+      default () {
+        return []
+      }
+    }
+  },
   data () {
     return {
       coordinates: {
         lat: 0,
         lng: 0
+      },
+      mapStyle: {
+        styles
       }
     }
   },
@@ -41,12 +57,24 @@ export default {
         this.coordinates = coordinates
       })
       .catch(error => alert(error))
+  },
+  methods: {
+    getPosition (place) {
+      return {
+        lat: place.geometry.coordinates[1],
+        lng: place.geometry.coordinates[0]
+      }
+    }
   }
 }
 </script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
+
+p {
+  padding-bottom: 10px;
+}
 
 * {
   box-sizing: border-box;
@@ -62,10 +90,11 @@ body {
   max-width: 500px;
   margin: 30px auto;
   overflow: auto;
+  text-align: center;
   min-height: 300px;
-  border: 1px solid steelblue;
   padding: 30px;
   border-radius: 5px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 </style>
