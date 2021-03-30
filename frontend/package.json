@@ -16,7 +16,7 @@
     "@nuxtjs/proxy": "^2.1.0",
     "core-js": "^3.8.3",
     "json-server": "^0.16.3",
-    "nuxt": "^2.14.12",
+    "nuxt": "^2.15.3",
     "vue-browser-geolocation": "^1.8.0",
     "vue2-google-maps": "^0.10.7"
   },
@@ -24,10 +24,11 @@
     "@nuxtjs/eslint-config": "^5.0.0",
     "@nuxtjs/eslint-module": "^3.0.2",
     "babel-eslint": "^10.1.0",
-    "eslint": "^7.20.0",
+    "eslint": "^7.23.0",
     "eslint-loader": "^4.0.2",
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-vue": "^7.5.0",
+    "eslint-webpack-plugin": "^2.5.3",
     "node-sass": "^5.0.0",
     "sass-loader": "^10.1.1"
   }
