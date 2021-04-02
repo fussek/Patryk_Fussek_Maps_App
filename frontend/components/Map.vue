@@ -65,15 +65,21 @@ export default {
   },
   methods: {
     getPosition(place) {
-      return {
-        lat: place.geometry.coordinates[1],
-        lng: place.geometry.coordinates[0]
+      if (place.geometry.coordinates){
+        return {
+          lat: place.geometry.coordinates[1],
+          lng: place.geometry.coordinates[0]
+        }
+      } else return {
+        lat: parseFloat(place.geometry.location.lat),
+        lng: parseFloat(place.geometry.location.lng)
       }
+
     },
     setPlace(place) {
       this.place = place
     },
-    async usePlace(place) {
+    async usePlace() {
       if (this.place) {
         var newPostion = {
           lat: this.place.geometry.location.lat(),
