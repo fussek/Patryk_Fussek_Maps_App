@@ -8,8 +8,14 @@
 export default {
   name: 'Button',
   props: {
-    text: String,
-    color: String
+    text: {
+      type: String,
+      default: ''
+    },
+    color: {
+      type: String,
+      default: 'black'
+    }
   },
   methods: {
     onclick () {
@@ -19,6 +25,18 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+button {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: inherit;
+}
 </style>

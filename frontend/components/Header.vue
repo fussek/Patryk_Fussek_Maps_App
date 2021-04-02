@@ -17,7 +17,10 @@ export default {
     Button
   },
   props: {
-    title: String,
+    title: {
+      type: String,
+      default: ''
+    },
     showAddTask: Boolean
   },
   emits: ['toggle-maps']
