@@ -6,6 +6,7 @@
         v-for="place in places"
         :key="place.id"
         :place="place"
+        @delete="$emit('delete', place.id)"
       />
     </div>
   </div>
@@ -25,7 +26,8 @@ export default {
       default () {
         return []
       }
-    }
+    },
+  emits: ['delete-task']
   }
 }
 </script>

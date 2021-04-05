@@ -7,6 +7,9 @@
     <div class="saved-place__type">
       {{ place.id }}. {{ getTitle()}}
     </div>
+    <div class="delete">
+      <i @click="$emit('delete', place.id)">🗑</i>
+    </div>
   </div>
 </template>
 
@@ -49,10 +52,14 @@ export default {
 
 <style lang="scss" scoped>
 .saved-place {
-    text-align: center;
-  .saved-place__type{
+  text-align: center;
+
+  .saved-place__type {
     font-weight: bold;
 
+    .delete {
+      cursor: pointer;
+    }
   }
-  }
+}
 </style>

@@ -5,16 +5,16 @@
     </h1>
     <Header :show-add-task="showMap" @toggle-maps="toggleMaps" />
     <div v-if="showMap">
-      <SavedPlacesList :places="places" />
+      <SavedPlacesList
+        @delete="deletePlace"
+        :places="places" />
       <Map :places="places" />
     </div>
-    <to-do-list :todos="todos" />
   </div>
 </template>
 
 <script>
 
-import ToDoList from '~/components/ToDoList.vue'
 import Map from '~/components/Map.vue'
 import Header from '~/components/Header.vue'
 import SavedPlacesList from '~/components/SavedPlacesList'
@@ -22,7 +22,6 @@ import SavedPlacesList from '~/components/SavedPlacesList'
 export default {
   components: {
     SavedPlacesList,
-    ToDoList,
     Map,
     Header
   },
@@ -36,9 +35,6 @@ export default {
   data () {
     return {
       places: {
-        type: Array
-      },
-      todos: {
         type: Array
       },
       showMap: false
@@ -55,6 +51,15 @@ export default {
       const res = await fetch('http://localhost:5001/features')
       const data = await res.json()
       return data
+    },
+    async deletePlace(id) {
+      if (confirm('Are you sure?')) {
+        const res = await fetch(`http://localhost:5001/features/${id}`, {
+          method: 'DELETE'
+        })
+        res.status === 200 ? (this.place = this.places.filter((place) => place.id !== id))
+          : alert('Error deleting place')
+      }
     }
   }
 }
