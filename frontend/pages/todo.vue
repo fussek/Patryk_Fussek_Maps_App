@@ -1,14 +1,15 @@
 <template>
-  <div class="container">
-    <h1 class="title">
-      My Places Bucketlist
-    </h1>
-    <Header :show-add-task="showMap" @toggle-maps="toggleMaps" />
-    <div v-if="showMap">
-      <SavedPlacesList
-        @delete="deletePlace"
-        :places="places" />
-      <Map :places="places" />
+  <div>
+    <div class="container">
+      <h1 class="title">
+        My Places Bucketlist
+      </h1>
+      <div v-if="showMap" class="maps-places">
+        <SavedPlacesList
+          @delete="deletePlace"
+          :places="places"/>
+        <Map :places="places"/>
+      </div>
     </div>
   </div>
 </template>
@@ -26,11 +27,6 @@ export default {
     Header
   },
 
-  async asyncData (ctx) {
-    return {
-      todos: await ctx.app.$services.todo.findAll()
-    }
-  },
 
   data () {
     return {
@@ -42,6 +38,9 @@ export default {
   },
   async created () {
     this.places = await this.fetchData()
+    if (this.places){
+      this.showMap = true
+    }
   },
   methods: {
     toggleMaps () {
