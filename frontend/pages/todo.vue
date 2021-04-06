@@ -1,6 +1,7 @@
 <template>
   <div>
     <div class="container">
+      <SideBar/>
       <h1 class="title">
         My Places Bucketlist
       </h1>
@@ -10,6 +11,16 @@
           :places="places"/>
         <Map :places="places"/>
       </div>
+      <LargeCardDisplay
+        v-for="largeCardInfo in largeCardInfo"
+        :key="largeCardInfo.id"
+        :cardsSection="largeCardInfo"
+      />
+      <SmallCardDisplay
+        v-for="smallCardInfo in smallCardSections"
+        :key="smallCardInfo.id"
+        :cardsSection="smallCardInfo"
+      />
     </div>
   </div>
 </template>
@@ -19,9 +30,18 @@
 import Map from '~/components/Map.vue'
 import Header from '~/components/Header.vue'
 import SavedPlacesList from '~/components/SavedPlacesList'
+import LargeCardDisplay from "~/components/LargeCardDisplay";
+import SmallCardDisplay from "~/components/SmallCardDisplay";
+import SideBar from "~/components/SideBar";
+
+import { largeCardSections, smallCardSections } from "@/assets/data.js"
+
 
 export default {
   components: {
+    SideBar,
+    LargeCardDisplay,
+    SmallCardDisplay,
     SavedPlacesList,
     Map,
     Header
@@ -33,7 +53,9 @@ export default {
       places: {
         type: Array
       },
-      showMap: false
+      showMap: false,
+      largeCardInfo: largeCardSections,
+      smallCardSections: smallCardSections
     }
   },
   async created () {
