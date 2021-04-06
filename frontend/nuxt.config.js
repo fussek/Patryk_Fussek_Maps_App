@@ -30,8 +30,11 @@ export default {
   plugins: [
     "~/plugins/services.js",
     "~/plugins/interceptor.js",
+    "~/plugins/bootstrapvue.js",
     "~/plugins/mapsplugin.js"
   ],
+  // consider using this. autoimports components
+  // components: true,
   /*
    ** Nuxt.js dev-modules
    */
