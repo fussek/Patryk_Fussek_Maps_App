@@ -34,7 +34,7 @@ import LargeCardDisplay from "~/components/LargeCardHorizontalList";
 import SmallCardDisplay from "~/components/SmallCardDisplay";
 import SideBar from "~/components/SideBar";
 
-import { largeCardSections, smallCardSections } from "@/assets/data.js"
+import { smallCardSections } from "@/assets/data.js"
 
 
 export default {
@@ -54,7 +54,6 @@ export default {
         type: Array
       },
       showMap: false,
-      largeCardInfo: largeCardSections,
       smallCardSections: smallCardSections
     }
   },
@@ -65,9 +64,6 @@ export default {
     }
   },
   methods: {
-    toggleMaps () {
-      this.showMap = !this.showMap
-    },
     async fetchData () {
       const res = await fetch('http://localhost:5001/features')
       const data = await res.json()

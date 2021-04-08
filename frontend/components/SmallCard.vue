@@ -1,12 +1,29 @@
 <template>
     <nuxt-link :to="`/products/${card.id}`" class="card-container">
-        <img class="image" :src="require(`@/assets/images/${card.image || 'fe1.jpg'}`)" alt="">
+      <div v-if="pictureUrl">
+        <img :src=pictureUrl alt=""/>
+      </div>
     </nuxt-link>
 </template>
 
 <script>
     export default {
-        props: ["card"]
+        props: ["card"],
+      data(){
+        return {
+          pictureUrl: null
+        }
+      },
+      async created() {
+        this.pictureUrl = await this.getPlacePicture()
+      },
+      methods: {
+      async getPlacePicture () {
+        const res = await fetch('https://picsum.photos/300/200')
+        const data = await res
+        return data.url
+      }
+      }
     }
 </script>
 
