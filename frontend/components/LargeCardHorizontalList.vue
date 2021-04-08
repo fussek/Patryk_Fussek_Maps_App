@@ -19,15 +19,13 @@
 <script>
 import LargeCard from "~/components/LargeCard";
 import VueHorizontalList from "vue-horizontal-list"
-import HorizontalListLarge from "~/components/HorizontalListLarge";
 
     export default {
       components:{
-        HorizontalListLarge,
         VueHorizontalList,
         LargeCard
       },
-        props: ['cardsSection', 'places'],
+        props: ['places'],
       data() {
         return {
           options: {

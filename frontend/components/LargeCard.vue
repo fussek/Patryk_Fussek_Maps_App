@@ -1,13 +1,13 @@
 <template>
-    <div class="card">
+  <nuxt-link :to="`/places/${place.id}`" class="card">
       <div v-if="pictureUrl" class="image-container">
-        <img :src=pictureUrl alt=""/>
+        <img class="large-img" :src=pictureUrl alt=""/>
       </div>
       <div class="subtitle">TITLE • SNIPPET</div>
 
       <h3>{{ getTitle(place) }}</h3>
       <p>{{ place.id }}</p>
-    </div>
+  </nuxt-link>
 </template>
 
 <script>
@@ -30,7 +30,7 @@
           return title
         },
         async getPlacePicture () {
-          const res = await fetch('https://picsum.photos/200/300')
+          const res = await fetch('https://picsum.photos/370/270')
           const data = await res
           return data.url
         }
@@ -39,6 +39,21 @@
 </script>
 
 <style scoped>
+
+.card{
+  color: black;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.card:hover {
+  color: darkgrey;
+}
+.large-img {
+  border-radius: 0.5rem;
+}
+
+
+
 
 /*p {*/
 /*  margin-top: 4px;*/
