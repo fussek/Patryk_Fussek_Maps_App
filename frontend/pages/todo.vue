@@ -5,22 +5,22 @@
       <h1 class="title">
         My Places Bucketlist
       </h1>
-      <div v-if="showMap" class="maps-places">
-        <SavedPlacesList
-          @delete="deletePlace"
-          :places="places"/>
-        <Map :places="places"/>
+      <div v-if="showMap">
+        <div class="maps-places">
+          <SavedPlacesList
+            @delete="deletePlace"
+            :places="places"/>
+          <Map :places="places"/>
+        </div>
+        <LargeCardDisplay
+          :places="places"
+        />
+        <SmallCardDisplay
+          v-for="smallCardInfo in smallCardSections"
+          :key="smallCardInfo.id"
+          :cardsSection="smallCardInfo"
+        />
       </div>
-      <LargeCardDisplay
-        v-for="largeCardInfo in largeCardInfo"
-        :key="largeCardInfo.id"
-        :cardsSection="largeCardInfo"
-      />
-      <SmallCardDisplay
-        v-for="smallCardInfo in smallCardSections"
-        :key="smallCardInfo.id"
-        :cardsSection="smallCardInfo"
-      />
     </div>
   </div>
 </template>
@@ -30,7 +30,7 @@
 import Map from '~/components/Map.vue'
 import Header from '~/components/Header.vue'
 import SavedPlacesList from '~/components/SavedPlacesList'
-import LargeCardDisplay from "~/components/LargeCardDisplay";
+import LargeCardDisplay from "~/components/LargeCardHorizontalList";
 import SmallCardDisplay from "~/components/SmallCardDisplay";
 import SideBar from "~/components/SideBar";
 
