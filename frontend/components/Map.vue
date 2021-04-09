@@ -1,39 +1,49 @@
 <template>
   <div class="container">
-    <h1>Your coordinates:</h1>
-    <p>{{ coordinates.lat.toPrecision(8) }} Latitude, {{ coordinates.lng.toPrecision(8) }} Longitude</p>
-    <gmap-autocomplete ref="gmapAutocomplete" @keyup.enter="usePlace" @place_changed="setPlace"/>
-    <button @click="usePlace">Add</button>
     <!--    the v-if required in order to be sure that the array is not empty, otherwise errors (async methods) -->
-    <div v-if="places.length > 0">
-      <GmapMap
-        :center="{lat:coordinates.lat, lng:coordinates.lng}"
-        :zoom="4"
-        :options="mapStyle"
-        map-type-id="roadmap"
-        style="width: 100%; height: 300px"
-      >
-        <GmapMarker
-          ref="myPosition"
-          :position="{lat:coordinates.lat, lng:coordinates.lng}"
-        />
-        <GmapMarker
-          v-for="place in places"
-          :key="place.id"
-          :ref="place.id"
-          :position="getPosition(place)"
+    <div class="map-list" v-if="places.length > 0">
+        <h1>Your coordinates:</h1>
+        <p>{{ coordinates.lat.toPrecision(8) }} Latitude, {{ coordinates.lng.toPrecision(8) }} Longitude</p>
+        <gmap-autocomplete ref="gmapAutocomplete" @keyup.enter="usePlace" @place_changed="setPlace"/>
+        <button class="add-button" @click="usePlace">Add</button>
+        <GmapMap
+          :center="{lat:coordinates.lat, lng:coordinates.lng}"
+          :zoom="4"
+          :options="mapStyle"
+          map-type-id="roadmap"
+          style="width: 100%; height: 300px"
+        >
+          <GmapMarker
+            ref="myPosition"
+            :position="{lat:coordinates.lat, lng:coordinates.lng}"
+            style="background-color: dodgerblue"
+          />
+          <GmapMarker
+            v-for="place in places"
+            :key="place.id"
+            :ref="place.id"
+            :position="getPosition(place)"
 
+          />
+        </GmapMap>
+
+        <SavedPlacesList
+          v-on="$listeners"
+          :places="places"
         />
-      </GmapMap>
     </div>
   </div>
 </template>
 
 <script>
 import styles from 'assets/MapStyle'
+import SavedPlacesList from "~/components/SavedPlacesList";
 
 export default {
   name: 'Map',
+  components:{
+    SavedPlacesList
+  },
   props: {
     places: {
       type: Array,
@@ -42,6 +52,7 @@ export default {
       }
     }
   },
+  emits: ['delete'],
   data() {
     return {
       coordinates: {
@@ -81,16 +92,16 @@ export default {
     },
     async usePlace() {
       if (this.place) {
-        var newPostion = {
+        this.coordinates = {
           lat: this.place.geometry.location.lat(),
           lng: this.place.geometry.location.lng(),
         };
-        this.coordinates = newPostion;
-        this.places.push(this.place);
+        await this.updateData(this.place)
+        this.places = await this.fetchData()
         console.log(this.places)
-        this.updateData(this.place)
       }
     },
+    //todo: refactor -> json server calls in one place
     async updateData(place) {
       const res = await fetch('http://localhost:5001/features', {
         method: 'POST',
@@ -102,7 +113,12 @@ export default {
       const data = await res.json()
       return data
 
-    }
+    },
+    async fetchData () {
+      const res = await fetch('http://localhost:5001/features')
+      const data = await res.json()
+      return data
+    },
   }
 }
 </script>
@@ -125,15 +141,26 @@ body {
 }
 
 .container {
-  max-width: 500px;
+  max-width: 800px;
   margin: 30px auto;
   overflow: auto;
   text-align: center;
-  min-height: 300px;
-  padding: 30px;
+  min-height: 500px;
+  padding-left: 150px;
+  padding-right: 150px;
+  padding-bottom: 20px;
   border-radius: 5px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
 
+}
+.add-button {
+  background-color: green;
+  width: 30%;
+  height: 15%;
+  border: none;
+  cursor: pointer;
+  margin-top: 5px;
+  border-radius: 10px;
 }
 
 </style>

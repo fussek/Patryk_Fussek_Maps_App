@@ -7,13 +7,15 @@
     <div class="saved-place__type">
       {{ place.id }}. {{ getTitle()}}
     </div>
-    <div class="delete">
-      <i @click="$emit('delete', place.id)">🗑</i>
-    </div>
+      <Button class="small-button" text='✗' color='crimson'
+              @btn-click="$emit('delete', place.id)"
+      />
   </div>
 </template>
 
 <script>
+import Button from './Button'
+
 export default {
   name: 'SavedPlace',
   props: {
@@ -24,16 +26,19 @@ export default {
       }
     }
   },
+  components: {
+    Button
+  },
   methods: {
     getLatitude() {
-      var lat = null;
+      let lat = null;
       if (this.place.geometry.coordinates){
         lat = this.place.geometry.coordinates[0]
       } else lat = this.place.geometry.location.lat
       return lat
     },
     getLongitude() {
-      var lng = null;
+      let lng = null;
       if (this.place.geometry.coordinates){
         lng = this.place.geometry.coordinates[1]
       } else lng = this.place.geometry.location.lng
@@ -56,10 +61,15 @@ export default {
 
   .saved-place__type {
     font-weight: bold;
-
-    .delete {
-      cursor: pointer;
-    }
+  }
+  .small-button {
+    width: 15%;
+    height: 5%;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-top: 5px;
+    border-radius: 10px;
   }
 }
 </style>

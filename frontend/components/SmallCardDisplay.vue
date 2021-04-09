@@ -1,11 +1,11 @@
 <template>
     <div class="container">
-        <h3 class="header">{{ cardsSection.title }}</h3>
+        <h3 class="header">{{ citiesList.title }}</h3>
         <div class="card-container">
             <SmallCard
-                v-for="card in cardsSection.cards"
-                :key="card.id"
-                :card="card"
+                v-for="city in getRandomPlaces(citiesList)"
+                :key="city.name"
+                :city="city"
             />
         </div>
     </div>
@@ -13,10 +13,22 @@
 
 <script>
 import SmallCard from "~/components/SmallCard";
-    export default {
-        props: ["cardsSection"],
+
+export default {
+        props: ["citiesList"],
       components: {
         SmallCard
+      },
+      methods: {
+          getRandomPlaces(citiesList){
+            const n = 12;
+            // console.log(citiesList.cities)
+            return citiesList.cities
+              .map(x => ({ x, r: Math.random() }))
+              .sort((a, b) => a.r - b.r)
+              .map(a => a.x)
+              .slice(0, n);
+          }
       }
     }
 </script>

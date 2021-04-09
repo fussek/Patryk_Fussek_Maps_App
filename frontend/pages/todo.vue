@@ -3,22 +3,23 @@
     <div class="container">
       <SideBar/>
       <h1 class="title">
-        My Places Bucketlist
+        My Places:
       </h1>
       <div v-if="showMap">
         <div class="maps-places">
-          <SavedPlacesList
-            @delete="deletePlace"
-            :places="places"/>
-          <Map :places="places"/>
+          <div>
+            <Map
+              @delete="deletePlace"
+              :places="places"/>
+          </div>
         </div>
         <LargeCardDisplay
           :places="places"
         />
         <SmallCardDisplay
-          v-for="smallCardInfo in smallCardSections"
-          :key="smallCardInfo.id"
-          :cardsSection="smallCardInfo"
+          v-for="citiesList in citiesList"
+          :key="citiesList.id"
+          :citiesList="citiesList"
         />
       </div>
     </div>
@@ -34,7 +35,7 @@ import LargeCardDisplay from "~/components/LargeCardHorizontalList";
 import SmallCardDisplay from "~/components/SmallCardDisplay";
 import SideBar from "~/components/SideBar";
 
-import { smallCardSections } from "@/assets/data.js"
+import { citiesList } from "~/assets/cities.js"
 
 
 export default {
@@ -54,7 +55,7 @@ export default {
         type: Array
       },
       showMap: false,
-      smallCardSections: smallCardSections
+      citiesList: citiesList
     }
   },
   async created () {
@@ -76,8 +77,12 @@ export default {
         })
         res.status === 200 ? (this.place = this.places.filter((place) => place.id !== id))
           : alert('Error deleting place')
+        this.places = await this.fetchData()
       }
     }
   }
 }
 </script>
+
+<style scoped>
+</style>

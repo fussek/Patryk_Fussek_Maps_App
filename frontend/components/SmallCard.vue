@@ -1,5 +1,5 @@
 <template>
-    <nuxt-link :to="`/products/${card.id}`" class="card-container">
+    <nuxt-link :to="`/places/${city.name}`" class="card-container">
       <div v-if="pictureUrl">
         <img :src=pictureUrl alt=""/>
       </div>
@@ -8,7 +8,7 @@
 
 <script>
     export default {
-        props: ["card"],
+        props: ["city"],
       data(){
         return {
           pictureUrl: null
