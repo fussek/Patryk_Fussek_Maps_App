@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="`/places/${place.id}`" class="card">
+  <nuxt-link :to="`/places/${getTitle(place)}`" class="card">
       <div v-if="pictureUrl" class="image-container">
         <img class="large-img" :src=pictureUrl alt=""/>
       </div>
@@ -30,7 +30,7 @@
           return title
         },
         async getPlacePicture () {
-          const res = await fetch('https://picsum.photos/370/270')
+          const res = await fetch('https://picsum.photos/350/250')
           const data = await res
           return data.url
         }
@@ -74,13 +74,12 @@
 /*  margin-bottom: 6px;*/
 /*}*/
 
-/*.image-container {*/
-/*  border-radius: 3px;*/
-/*  overflow: hidden;*/
-/*  position: relative;*/
-/*  width: 100%;*/
-/*  padding-top: 60%;*/
-/*}*/
+.image-container {
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
 
 /*img {*/
 /*  object-fit: cover;*/

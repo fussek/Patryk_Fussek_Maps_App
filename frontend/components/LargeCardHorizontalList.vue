@@ -42,10 +42,13 @@ import VueHorizontalList from "vue-horizontal-list"
 
 <style scoped>
 .horizontal-container {
+  padding-top: 30px;
   display: block;
   margin-left: 25%;
   margin-right: 25%;
   margin-bottom: 5vh;
+  justify-content: space-between;
+
 }
 /*.container {*/
 /*  margin-top: 2rem;*/
@@ -60,8 +63,7 @@ import VueHorizontalList from "vue-horizontal-list"
   color: grey;
   margin-bottom: 1.5rem;
 }
-/*.cards-container {*/
-/*  display: flex;*/
-/*  justify-content: space-between;*/
-/*}*/
+.cards-container {
+  justify-content: space-between;
+}
 </style>
