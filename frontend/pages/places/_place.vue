@@ -12,7 +12,6 @@
             :options="mapStyle"
             map-type-id="roadmap"
             style="width: 100%; height: 300px; box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1)"
-
           >
             <GmapMarker
               ref="myPosition"
@@ -23,7 +22,6 @@
         </div>
         <div class="grid">
           <h1 class="title">
-
           <img class="image" v-if="flagUrl" :src=flagUrl alt=""/>
           </h1>
           <i>
@@ -32,56 +30,49 @@
               {{ getPopulation() }}
             </h1>
             <h1 class="title">
-              <button class="button">
-                Add to your list!
+              <button v-if="isAlreadyAdded" class="button-deny">
+                Already added
+              </button>
+              <button v-else class="button-allow" @click=addToPlaces()>
+                Add to your places!
               </button>
             </h1>
 
           </i>
         </div>
       </div>
-<!--      <v-carousel>-->
-<!--        <v-carousel-item-->
-<!--          v-for="(item,i) in items"-->
-<!--          :key="i"-->
-<!--          :src="item.src"-->
-<!--        ></v-carousel-item>-->
-<!--      <p>-->
-<!--        Coordinates: {{ place.geometry }}-->
-<!--      </p>-->
       <div class="grid">
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sagittis libero orci. Mauris mattis libero ut risus dictum ornare eu id lacus. Suspendisse scelerisque eget enim elementum ultrices. Phasellus sed dolor sem. Nam et nulla eu tortor efficitur efficitur non ut sem. Maecenas quis nibh metus. Nunc eu nibh lorem.
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sagittis libero orci. Mauris mattis libero ut risus dictum ornare eu id lacus. Suspendisse scelerisque eget enim elementum ultrices. Phasellus sed dolor sem. Nam et nulla eu tortor efficitur efficitur non ut sem. Maecenas quis nibh metus. Nunc eu nibh lorem.
 
           Nulla facilisi. Sed dignissim ultricies iaculis. Nunc et est ipsum. Mauris nisl orci, ornare sed euismod ut, viverra eget nisi. Mauris non mi consectetur, viverra ante cursus, pharetra lacus. Suspendisse volutpat urna et diam consequat lacinia. Sed hendrerit interdum quam, sit amet faucibus tortor commodo sed. Ut sit amet felis et ligula mollis porttitor. Vivamus quis dapibus magna. Ut accumsan ante interdum lorem mollis, vel luctus turpis tincidunt. In finibus imperdiet euismod. Pellentesque sagittis volutpat erat rhoncus tristique. Phasellus fringilla eget tellus in auctor. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
           In vitae eleifend dolor. Fusce luctus vestibulum ligula, vel laoreet ex porta a. Vestibulum laoreet pretium nulla, at accumsan orci mattis id. Etiam a nunc sed leo elementum suscipit. Duis aliquam pulvinar tempor. Sed hendrerit libero sed nulla viverra, eget varius nisi dapibus. Vivamus tristique tristiquelibero vitae tempor.
         </p>
-        <p>
-          Suspendisse sit amet sodales nibh, vel tristique arcu. Vestibulum mattis venenatis nisi sit amet fermentum. Curabitur nec justo elit. Duis quis velit pharetra, suscipit massa in, porta mi. Nullam et sapien vitae mauris condimentum semper. Morbi a sapien non dolor imperdiet aliquet eu quis tortor. Morbi ultricies gravida ipsum, id rutrum tellus. Cras finibus nibh odio, a commodo sapien dignissim id. Vivamus rutrum arcu dolor, vel dignissim ante ultricies nec.
+        <p>Suspendisse sit amet sodales nibh, vel tristique arcu. Vestibulum mattis venenatis nisi sit amet fermentum. Curabitur nec justo elit. Duis quis velit pharetra, suscipit massa in, porta mi. Nullam et sapien vitae mauris condimentum semper. Morbi a sapien non dolor imperdiet aliquet eu quis tortor. Morbi ultricies gravida ipsum, id rutrum tellus. Cras finibus nibh odio, a commodo sapien dignissim id. Vivamus rutrum arcu dolor, vel dignissim ante ultricies nec.
 
           Cras in aliquam risus. Aenean consequat, neque eu mattis placerat, eros lacus facilisis mi, et faucibus nisl sem finibus tellus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu ultricies justo. Aliquam ut purus pulvinar, dignissim purus sit amet, gravida neque. Aliquam velit purus, sollicitudin at velit at, elementum consequat velit. Maecenas vel diam ultrices, eleifend ex in, condimentum enim.
 
           Cras consectetur vitae elit at laoreet. Sed sodales tempor ligula. Maecenas imperdiet ultricies tellus, ac imperdiet ex gravida sed. Donec laoreet ligula in dolor vestibulum auctor. Nullam quis quam est. Ut non diam lacus. Sed ut urna pellentesque, interdum leo eu, sodales ex. Praesent elementum metus nec ullamcorper bibendum. Sed scelerisque lacinia eleifend. Donec dapibus iaculis ultrices.
         </p>
       </div>
-
-      <NuxtLink class="home" to="/todo">⌂</NuxtLink>
-
+      <NuxtLink class="link" to="/todo">⌂</NuxtLink>
+      <NuxtLink class="link" :to="`/places/${getRandomPlace()}`">⧖</NuxtLink>
     </div>
   </div>
 </template>
 
 <script>
 import styles from "~/assets/MapStyle";
-import {isoCountries} from "~/assets/countries.js"
 import Button from "~/components/Button";
+import { citiesList } from "~/assets/cities.js";
 
 export default {
   name: "place",
   components: {
-    Button,
-  isoCountries
+    Button
+  },
+  props:{
+    citiesList
   },
   data() {
     return {
@@ -102,6 +93,7 @@ export default {
         disableDefaultUi: true,
         styles
       },
+      isAlreadyAdded: false,
       showMap: false,
       flagUrl: null,
       countryCode: null,
@@ -118,6 +110,7 @@ export default {
         lat:this.getLatitude(this.place),
         lng:this.getLongitude(this.place)
       }
+      this.isAlreadyAdded = await this.findInUserPlaces()
     }
   },
 
@@ -160,6 +153,37 @@ export default {
         pop = this.place.population
       }
       return pop
+    },
+
+    async findInUserPlaces() {
+      const res = await fetch('http://localhost:5001/features')
+      const data = await res.json()
+      return this.containsValue(data, this.place.name)
+    },
+
+    containsValue(json, value) {
+      let contains = false;
+      Object.keys(json).some(key => {
+        contains = typeof json[key] === 'object' ? this.containsValue(json[key], value) : json[key] === value;
+        return contains;
+      });
+      return contains;
+    },
+    async addToPlaces() {
+      const res = await fetch('http://localhost:5001/features', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify(this.place)
+      })
+      const data = await res.json()
+      alert('Added !')
+      this.isAlreadyAdded = true
+      return data
+    },
+    getRandomPlace() {
+      return citiesList[0].cities[Math.floor(Math.random() * citiesList[0].cities.length)].name
     }
   }
 }
@@ -173,7 +197,7 @@ export default {
   padding: 10px;
   display: grid;
   column-count: 2;
-  grid-template-columns: 1fr 300px;
+  grid-template-columns: 1fr 1fr;
   place-items: center;
   justify-content: center;
   text-align: justify;
@@ -191,7 +215,7 @@ export default {
 
 }
 
-.button{
+.button-allow{
   display:inline-block;
   padding:0.3em 1.2em;
   margin:0 0.3em 0.3em 0;
@@ -204,30 +228,48 @@ export default {
   background-color: #1d6f18;
   text-align:center;
   transition: all 0.2s;
-  font-weight: 300;
-  font-size: 32px;
+  font-size: 24px;
   letter-spacing: 1px;
   margin-top: 20px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
 }
-.button:hover{
+.button-allow:hover{
   opacity: 0.9;
 }
 @media all and (max-width:30em){
-  .button{
+  .button-allow{
     display:block;
     margin:0.2em auto;
   }
 }
+.button-deny{
+  display:inline-block;
+  padding:0.3em 1.2em;
+  margin:0 0.3em 0.3em 0;
+  border-radius:2em;
+  box-sizing: border-box;
+  text-decoration:none;
+  cursor: initial;
+  font-family:'Roboto',sans-serif;
+  font-weight:300;
+  color:#FFFFFF;
+  background-color: #6f1818;
+  text-align:center;
+  transition: all 0.2s;
+  font-size: 24px;
+  letter-spacing: 1px;
+  margin-top: 20px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
 
-.home {
+.link {
   font-size: 10vh;
   alignment: center;
   color: black;
   text-decoration: none;
   transition: 0.3s;
 }
-.home:hover {
+.link:hover {
   color: darkgrey;
 }
 .image{
