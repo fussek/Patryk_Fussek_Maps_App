@@ -38,7 +38,7 @@ h1 {
 }
 
 .saved-places-list-container {
-  height:200px;
+  height:100%;
   overflow-y: auto;
   width: 400px;
   margin: auto;
