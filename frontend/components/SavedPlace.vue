@@ -2,9 +2,9 @@
 <template>
   <div class="saved-place">
     <div class="saved-place__coordinates">
-      <p>{{ getLatitude() }} lat, {{ getLongitude() }} lng</p>
+      <p>{{ savedPlaceCoordinates.lat }} lat, {{ savedPlaceCoordinates.lng }} lng</p>
     </div>
-    <div class="saved-place__type">
+    <div class="saved-place__type" @click="$emit('setCoordinates', savedPlaceCoordinates)">
       {{ place.id }}. {{ getTitle()}}
     </div>
       <Button class="small-button" text='✗' color='crimson'
@@ -18,6 +18,14 @@ import Button from './Button'
 
 export default {
   name: 'SavedPlace',
+  data() {
+    return {
+      savedPlaceCoordinates: {
+        lat: 0,
+        lng: 0
+      }
+    }
+  },
   props: {
     place: {
       type: Object,
@@ -28,6 +36,12 @@ export default {
   },
   components: {
     Button
+  },
+  created() {
+    this.savedPlaceCoordinates = {
+      lat: this.getLatitude(),
+      lng: this.getLongitude()
+    }
   },
   methods: {
     getLatitude() {
@@ -71,6 +85,7 @@ export default {
 
   .saved-place__type {
     font-weight: bold;
+    cursor: pointer;
   }
   .small-button {
     width: 15%;

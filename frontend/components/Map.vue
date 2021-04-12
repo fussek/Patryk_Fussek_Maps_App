@@ -30,6 +30,7 @@
         </GmapMap>
 
         <SavedPlacesList
+          @setCoordinates="setCoordinates"
           v-on="$listeners"
           :places="places"
           style="width: 100%; height: 60vh"
@@ -98,6 +99,9 @@ export default {
     },
     setPlace(place) {
       this.place = place
+    },
+    setCoordinates(savedPlaceCoordinates) {
+      this.coordinates = savedPlaceCoordinates
     },
     async usePlace() {
       if (this.place) {

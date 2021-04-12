@@ -27,7 +27,7 @@ export default {
         return []
       }
     },
-  emits: ['delete']
+  emits: ['delete', 'setCoordinates']
   }
 }
 </script>
