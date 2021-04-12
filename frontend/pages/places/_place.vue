@@ -40,6 +40,13 @@
 
           </i>
         </div>
+        <vue-horizontal-list v-if="imagesLoaded" class="horizontal" :items=this.images :options="horizontalListOptions">
+          <template v-slot:default="{ item }">
+            <div class="image-container">
+              <img :src="item.urls.small" />
+            </div>
+          </template>
+        </vue-horizontal-list>
       </div>
       <div class="grid">
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sagittis libero orci. Mauris mattis libero ut risus dictum ornare eu id lacus. Suspendisse scelerisque eget enim elementum ultrices. Phasellus sed dolor sem. Nam et nulla eu tortor efficitur efficitur non ut sem. Maecenas quis nibh metus. Nunc eu nibh lorem.
@@ -65,10 +72,15 @@
 import styles from "~/assets/MapStyle";
 import Button from "~/components/Button";
 import { citiesList } from "~/assets/cities.js";
+import { createApi } from 'unsplash-js';
+import SmallCardDisplay from "~/components/SmallCardDisplay";
+import VueHorizontalList from "vue-horizontal-list"
 
 export default {
   name: "place",
   components: {
+    VueHorizontalList,
+    SmallCardDisplay,
     Button
   },
   props:{
@@ -93,6 +105,15 @@ export default {
         disableDefaultUi: true,
         styles
       },
+      horizontalListOptions: {
+        responsive: [
+          { end: 576, size: 1 },
+          { start: 576, end: 768, size: 2 },
+          { size: 3 },
+        ],
+      },
+      images: [],
+      imagesLoaded: false,
       isAlreadyAdded: false,
       showMap: false,
       flagUrl: null,
@@ -110,6 +131,7 @@ export default {
         lat:this.getLatitude(this.place),
         lng:this.getLongitude(this.place)
       }
+      await this.getUnsplashImages()
       this.isAlreadyAdded = await this.findInUserPlaces()
     }
   },
@@ -184,6 +206,32 @@ export default {
     },
     getRandomPlace() {
       return citiesList[0].cities[Math.floor(Math.random() * citiesList[0].cities.length)].name
+    },
+    getUnsplashImages() {
+      const unsplash = createApi({ accessKey: 'YOUR_UNSPLASH_API_KEY' });
+      unsplash.search.getPhotos({
+        query: this.query,
+        page: 1,
+        perPage: 9,
+        width: 300,
+        height: 200,
+        orderBy: 'popular',
+        orientation: 'landscape',
+      }).then(result => {
+        if (result.errors) {
+          console.log('error occurred: ', result.errors[0]);
+        } else {
+          const feed = result.response;
+          // extract total and results array from response
+          const { total, results } = feed;
+          this.images = results
+          this.imagesLoaded = true
+          // handle success here
+          console.log(`received ${results.length} photos out of ${total}`);
+          console.log('received photos ', results);
+        }
+      })
+
     }
   }
 }
@@ -274,5 +322,21 @@ export default {
 }
 .image{
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
+.image-container {
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+  min-width: 350px;
+  min-height: 250px;
+}
+.horizontal {
+  width: 100%;
+  min-height: 400px;
+  border-radius: 5px;
+  padding-top: 30px;
+  margin-bottom: 5vh;
+  justify-content: space-between;
+
 }
 </style>
