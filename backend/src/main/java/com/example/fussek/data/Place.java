@@ -10,17 +10,24 @@ public class Place {
 
     private String name;
 
-//    private Boolean visited;
+    private String fullName;
+
+    private String latitude;
+
+    private String longitude;
+
+    private Boolean visited;
 
     public Place() {
         super();
     }
 
-    public Place(String name
-//                 Boolean visited
-    ) {
+    public Place(String name, String fullName, String latitude, String longitude, Boolean visited) {
         this.name = name;
-//        this.visited = visited;
+        this.fullName = fullName;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.visited = visited;
     }
 
     public String getId() {
@@ -31,8 +38,18 @@ public class Place {
         return name;
     }
 
-//    public Boolean getVisited() {
-//        return visited;
-//    }
+    public String getFullName() {
+        return fullName;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public Boolean getVisited() { return visited; }
 
 }

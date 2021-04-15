@@ -1,9 +1,10 @@
-export default class Places {
-  constructor (id, name
-               // , visited
-  ) {
+export default class Place {
+  constructor (id, name, fullName, latitude, longitude, visited) {
     this.id = id
     this.name = name
-    // this.visited = visited
+    this.fullName = fullName
+    this.latitude = latitude
+    this.longitude = longitude
+    this.visited = visited
   }
 }

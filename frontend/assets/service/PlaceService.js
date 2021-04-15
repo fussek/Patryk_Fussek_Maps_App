@@ -1,4 +1,4 @@
-import Places from '~/assets/data/Place.class'
+import Place from '~/assets/data/Place.class'
 
 export default class PlaceApi {
   constructor ($axios) {
@@ -13,20 +13,28 @@ export default class PlaceApi {
     }).then((response) => {
       const places = []
       response.data.forEach((place) => {
-        places.push(new Places(place.id, place.name
-          // , place.visited
-        ))
+        places.push(new Place(
+          place.id,
+          place.name,
+          place.fullName,
+          place.latitude,
+          place.longitude,
+          place.visited))
       })
       return places
     })
   }
 
-  create (name) {
+  create (name, fullName, latitude, longitude) {
     return this.axios({
       method: 'post',
       url: 'places',
       data: {
-        name
+        name,
+        fullName,
+        latitude,
+        longitude,
+        visited: false
       },
       withCredentials: true
     }).then((response) => {
@@ -39,9 +47,12 @@ export default class PlaceApi {
   //     method: 'put',
   //     url: 'places/' + place.id,
   //     data: {
-  //       id: place.id,
-  //       name: place.name,
-  //       visited: true
+  //     id: place.id,
+  //     name: place.name,
+  //     fullName: place.fullName,
+  //     latitude: place.latitude,
+  //     longitude: place.longitude,
+  //     visited: true
   //     },
   //     withCredentials: true
   //   }).then((response) => {
