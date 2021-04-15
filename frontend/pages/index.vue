@@ -43,7 +43,7 @@ export default {
   methods: {
     async performLogin () {
       if (await this.$services.login.performLogin(this.username, this.password)) {
-        this.$router.push('todo')
+        this.$router.push('places')
       } else {
         this.username = ''
         this.password = ''

@@ -9,18 +9,20 @@
         <div class="maps-places">
           <div>
             <Map
-              @delete="deletePlace"
+              @delete="deleteFromDB"
               :places="places"/>
           </div>
         </div>
-        <LargeCardDisplay
-          :places="places"
-        />
-        <SmallCardDisplay
-          v-for="citiesList in citiesList"
-          :key="citiesList.id"
-          :citiesList="citiesList"
-        />
+        <div class="cards-container">
+          <LargeCardDisplay
+            :places="places"
+          />
+          <SmallCardDisplay
+            v-for="citiesList in citiesList"
+            :key="citiesList.id"
+            :citiesList="citiesList"
+          />
+        </div>
       </div>
     </div>
   </div>
@@ -58,31 +60,37 @@ export default {
       citiesList: citiesList
     }
   },
+  async asyncData(ctx){
+    return {
+      places: await ctx.app.$services.places.findAll()
+    }
+  },
   async created () {
-    this.places = await this.fetchData()
     if (this.places){
       this.showMap = true
     }
   },
   methods: {
     async fetchData () {
-      const res = await fetch('http://localhost:5001/features')
-      const data = await res.json()
-      return data
+      return await this.$services.places.findAll()
     },
-    async deletePlace(id) {
-      if (confirm('Are you sure?')) {
-        const res = await fetch(`http://localhost:5001/features/${id}`, {
-          method: 'DELETE'
-        })
-        res.status === 200 ? (this.place = this.places.filter((place) => place.id !== id))
-          : alert('Error deleting place')
-        this.places = await this.fetchData()
-      }
+    async deleteFromDB(id){
+      this.$services.places.deleteItem(id).then(() => {
+        this.$emit('deleted', id)
+      })
+      this.places = await this.fetchData()
     }
   }
 }
 </script>
 
 <style scoped>
+.cards-container {
+
+  width: 100%;
+  min-height: 400px;
+  overflow: inherit;
+  border-radius: 5px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
 </style>
