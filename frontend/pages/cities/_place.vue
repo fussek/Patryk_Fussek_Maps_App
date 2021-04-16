@@ -1,5 +1,7 @@
 <template>
   <div>
+    <NuxtLink class="link" to="/places">⌂</NuxtLink>
+    <NuxtLink class="link" :to="`/cities/${getRandomPlace()}`">⧖</NuxtLink>
     <h1 class="title">
       {{ place.full_name }}
     </h1>
@@ -34,7 +36,7 @@
                 Already added
               </button>
               <button v-else class="button-allow" @click=addToPlaces()>
-                Add to your places!
+                Add to your place!
               </button>
             </h1>
 
@@ -62,8 +64,8 @@
           Cras consectetur vitae elit at laoreet. Sed sodales tempor ligula. Maecenas imperdiet ultricies tellus, ac imperdiet ex gravida sed. Donec laoreet ligula in dolor vestibulum auctor. Nullam quis quam est. Ut non diam lacus. Sed ut urna pellentesque, interdum leo eu, sodales ex. Praesent elementum metus nec ullamcorper bibendum. Sed scelerisque lacinia eleifend. Donec dapibus iaculis ultrices.
         </p>
       </div>
-      <NuxtLink class="link" to="/todo">⌂</NuxtLink>
-      <NuxtLink class="link" :to="`/places/${getRandomPlace()}`">⧖</NuxtLink>
+      <NuxtLink class="link" to="/places">⌂</NuxtLink>
+      <NuxtLink class="link" :to="`/cities/${getRandomPlace()}`">⧖</NuxtLink>
     </div>
   </div>
 </template>
@@ -93,7 +95,8 @@ export default {
         lng: 0
       },
       place: {
-        type: Array
+        type: Array,
+        _links: undefined
       },
       mapStyle: {
         zoomControl: false,
@@ -118,6 +121,7 @@ export default {
       showMap: false,
       flagUrl: null,
       countryCode: null,
+      alternateCityNames: [],
       query: this.$route.params.place,
     }
   },
@@ -131,6 +135,7 @@ export default {
         lat:this.getLatitude(this.place),
         lng:this.getLongitude(this.place)
       }
+      this.alternateCityNames = await this.findAlternateNames()
       await this.getUnsplashImages()
       this.isAlreadyAdded = await this.findInUserPlaces()
     }
@@ -148,26 +153,10 @@ export default {
       return `https://flagcdn.com/w320/${this.countryCode}.png`
     },
     getLatitude() {
-      let lat = null;
-      if (this.place.geometry) {
-        if (this.place.geometry.coordinates) {
-          lat = this.place.geometry.coordinates[0]
-        } else if (this.place.geometry.location.lat) {
-          lat = this.place.geometry.location.lat
-        }
-      } else lat = this.place.location.latlon.latitude
-      return lat
+      return this.place.location.latlon.latitude
     },
     getLongitude() {
-      let lng = null;
-      if (this.place.geometry) {
-        if (this.place.geometry.coordinates) {
-          lng = this.place.geometry.coordinates[1]
-        } else if (this.place.geometry.location.lng) {
-          lng = this.place.geometry.location.lng
-        }
-      } else lng = this.place.location.latlon.longitude
-      return lng
+      return this.place.location.latlon.longitude
     },
     getPopulation(){
       let pop = 0;
@@ -176,46 +165,47 @@ export default {
       }
       return pop
     },
-
-    async findInUserPlaces() {
-      const res = await fetch('http://localhost:5001/features')
+    async findAlternateNames(){
+      const res = await fetch(this.place._links["city:alternate-names"].href)
       const data = await res.json()
-      return this.containsValue(data, this.place.name)
+      return data.alternate_names
+    },
+    async findInUserPlaces() {
+      const data = await this.$services.places.findAll();
+      return this.containsValue(data)
     },
 
-    containsValue(json, value) {
+    containsValue(data) {
       let contains = false;
-      Object.keys(json).some(key => {
-        contains = typeof json[key] === 'object' ? this.containsValue(json[key], value) : json[key] === value;
-        return contains;
-      });
+      let i;
+      for (i = 0; i < data.length; i++) {
+        contains = this.alternateCityNames.some(alternateName => data[i].name === alternateName.name)
+        if (contains) break
+      }
       return contains;
     },
     async addToPlaces() {
-      const res = await fetch('http://localhost:5001/features', {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify(this.place)
+      await this.$services.places.create(this.place.name,
+        this.place.full_name,
+        this.coordinates.lat,
+        this.coordinates.lng).then((data) => {
+        this.$emit('created', data)
       })
-      const data = await res.json()
       alert('Added !')
       this.isAlreadyAdded = true
-      return data
     },
     getRandomPlace() {
       return citiesList[0].cities[Math.floor(Math.random() * citiesList[0].cities.length)].name
     },
     getUnsplashImages() {
-      const unsplash = createApi({ accessKey: 'YOUR_UNSPLASH_API_KEY' });
+      const unsplash = createApi({ accessKey: 'K_VnqxwvuQx3CVRJfR2fU57IHwxbOUhIH1BsaY6And8' });
       unsplash.search.getPhotos({
         query: this.query,
         page: 1,
-        perPage: 9,
+        perPage: 12,
         width: 300,
         height: 200,
-        orderBy: 'popular',
+        orderBy: 'views',
         orientation: 'landscape',
       }).then(result => {
         if (result.errors) {
@@ -226,9 +216,6 @@ export default {
           const { total, results } = feed;
           this.images = results
           this.imagesLoaded = true
-          // handle success here
-          console.log(`received ${results.length} photos out of ${total}`);
-          console.log('received photos ', results);
         }
       })
 
