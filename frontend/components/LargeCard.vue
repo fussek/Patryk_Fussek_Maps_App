@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="`/places/${place.name}`" class="card">
+  <nuxt-link :to="`/cities/${place.name}`" class="card">
       <div v-if="pictureUrl" class="image-container">
         <img class="large-img" :src=pictureUrl alt=""/>
       </div>
@@ -24,11 +24,9 @@
       methods: {
         getTitle() {
           var title = null;
-          if (this.place.hasOwnProperty('properties')){
-            title = this.place.properties.Title
-          } else if (this.place.formatted_address) {
-            title = this.place.formatted_address
-          } else title = this.place.full_name
+          if (this.place.fullName){
+            title = this.place.fullName
+          }
           return title
         },
         async getPlacePicture () {

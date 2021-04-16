@@ -5,7 +5,7 @@
       <p>{{ savedPlaceCoordinates.lat }} lat, {{ savedPlaceCoordinates.lng }} lng</p>
     </div>
     <div class="saved-place__type" @click="$emit('setCoordinates', savedPlaceCoordinates)">
-      {{ place.id }}. {{ getTitle()}}
+      {{ getTitle()}}
     </div>
       <Button class="small-button" text='✗' color='crimson'
               @btn-click="$emit('delete', place.id)"
@@ -39,40 +39,30 @@ export default {
   },
   created() {
     this.savedPlaceCoordinates = {
-      lat: this.getLatitude(),
-      lng: this.getLongitude()
+      lat: parseFloat(this.getLatitude()),
+      lng: parseFloat(this.getLongitude())
     }
   },
   methods: {
     getLatitude() {
       let lat = null;
-      if (this.place.geometry) {
-        if (this.place.geometry.coordinates) {
-          lat = this.place.geometry.coordinates[0]
-        } else if (this.place.geometry.location) {
-          lat = this.place.geometry.location.lat
-        }
-      } else lat = this.place.location.latlon.latitude
+      if (this.place.latitude){
+        lat = this.place.latitude
+      }
       return lat
     },
     getLongitude() {
       let lng = null;
-      if (this.place.geometry) {
-        if (this.place.geometry.coordinates) {
-          lng = this.place.geometry.coordinates[1]
-        } else if (this.place.geometry.location) {
-          lng = this.place.geometry.location.lng
-        }
-      } else lng = this.place.location.latlon.longitude
+      if (this.place.longitude){
+        lng = this.place.longitude
+      }
       return lng
     },
     getTitle() {
       var title = null;
-      if (this.place.hasOwnProperty('properties')){
-        title = this.place.properties.Title
-      } else if (this.place.formatted_address) {
-        title = this.place.formatted_address
-      } else title = this.place.full_name
+      if (this.place.fullName){
+        title = this.place.fullName
+      }
       return title
     }
   }
