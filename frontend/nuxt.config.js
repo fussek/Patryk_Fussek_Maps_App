@@ -31,7 +31,9 @@ export default {
     "~/plugins/services.js",
     "~/plugins/interceptor.js",
     "~/plugins/bootstrapvue.js",
-    "~/plugins/mapsplugin.js"
+    "~/plugins/mapsplugin.js",
+    { src: "~/plugins/slide-menu.js", ssr: false },
+    { src: '~/plugins/amcharts.js', ssr: false }
   ],
   // consider using this. autoimports components
   // components: true,
@@ -40,7 +42,8 @@ export default {
    */
   buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
-    "@nuxtjs/eslint-module"
+    "@nuxtjs/eslint-module",
+    '@nuxtjs/vuetify',
   ],
   /*
    ** Nuxt.js modules
@@ -67,7 +70,8 @@ export default {
   build: {
     transpile: [
       'vue2-google-maps',
-      'vue-browser-geolocation'
+      'vue-browser-geolocation',
+      '@amcharts/amcharts4'
     ],
     /*
      ** You can extend webpack config here
