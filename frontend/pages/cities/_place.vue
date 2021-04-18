@@ -1,7 +1,6 @@
 <template>
   <div>
-    <NuxtLink class="link" to="/places">⌂</NuxtLink>
-    <NuxtLink class="link" :to="`/cities/${getRandomPlace()}`">⧖</NuxtLink>
+    <SideBar/>
     <h1 class="title">
       {{ place.full_name }}
     </h1>
@@ -77,10 +76,12 @@ import { citiesList } from "~/assets/cities.js";
 import { createApi } from 'unsplash-js';
 import SmallCardDisplay from "~/components/SmallCardDisplay";
 import VueHorizontalList from "vue-horizontal-list"
+import SideBar from "~/components/SideBar";
 
 export default {
   name: "place",
   components: {
+    SideBar,
     VueHorizontalList,
     SmallCardDisplay,
     Button

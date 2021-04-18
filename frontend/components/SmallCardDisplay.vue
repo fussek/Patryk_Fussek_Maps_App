@@ -22,7 +22,6 @@ export default {
       methods: {
           getRandomPlaces(citiesList){
             const n = 12;
-            // console.log(citiesList.cities)
             return citiesList.cities
               .map(x => ({ x, r: Math.random() }))
               .sort((a, b) => a.r - b.r)
@@ -41,6 +40,7 @@ export default {
     }
 
     .header {
+        padding-bottom: 15px;
         font-weight: 700;
         font-size: 1.5rem;
     }

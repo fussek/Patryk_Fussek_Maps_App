@@ -1,7 +1,7 @@
 <template>
-    <nuxt-link :to="`/places/${city.name}`" class="card-container">
-      <div v-if="pictureUrl">
-        <img :src=pictureUrl alt=""/>
+    <nuxt-link :to="`/cities/${city.name}`" class="card-container">
+      <div class="text-overlay" v-if="pictureUrl">
+        <img class="image" :src=pictureUrl alt=""/>
       </div>
     </nuxt-link>
 </template>
@@ -15,7 +15,9 @@
         }
       },
       async created() {
-        this.pictureUrl = await this.getPlacePicture()
+        if (this.pictureUrl == null) {
+          this.pictureUrl = await this.getPlacePicture()
+        }
       },
       methods: {
       async getPlacePicture () {
@@ -37,6 +39,27 @@
         cursor: pointer;
     }
 
+    .text-overlay {
+      position: center;
+      height: 100%;
+      width: 100%;
+      transition: .5s ease;
+      background-color: rgb(255, 255, 255);
+    }
+    .text-overlay:hover {
+      opacity: 0.4;
+    }
+    .text-overlay:hover .text {
+      visibility: visible;
+      opacity: 1;
+      color: white;
+      font-size: 20px;
+      position: relative;
+      text-decoration: none;
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
     .image {
         width: 100%;
         height: 100%

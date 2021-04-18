@@ -79,7 +79,10 @@ export default {
         this.$emit('deleted', id)
       })
       this.places = await this.fetchData()
-    }
+    },
+    getRandomPlace() {
+      return citiesList[0].cities[Math.floor(Math.random() * citiesList[0].cities.length)].name
+    },
   }
 }
 </script>
