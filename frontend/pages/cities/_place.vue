@@ -199,7 +199,7 @@ export default {
       return citiesList[0].cities[Math.floor(Math.random() * citiesList[0].cities.length)].name
     },
     getUnsplashImages() {
-      const unsplash = createApi({ accessKey: 'K_VnqxwvuQx3CVRJfR2fU57IHwxbOUhIH1BsaY6And8' });
+      const unsplash = createApi({ accessKey: 'UNSPLASH_API_KEY' });
       unsplash.search.getPhotos({
         query: this.query,
         page: 1,
