@@ -1,6 +1,6 @@
 <template>
 <div>
-  <Slide disableOutsideClick isOpen noOverlay :closeOnNavigation="true" width="400" >
+  <Slide disableOutsideClick isOpen noOverlay disableEsc :closeOnNavigation="true" width="400" >
     <NuxtLink class="nuxtlink" to="/places">
       <span>Home</span>
     </NuxtLink>
@@ -10,8 +10,11 @@
     <NuxtLink class="nuxtlink" to="/route">
       <span>Route Planer</span>
     </NuxtLink>
-    <NuxtLink class="nuxtlink" :to="`/cities/${getRandomPlace()}`">
+    <NuxtLink class="nuxtlink" to="/discover">
       <span>Discover</span>
+    </NuxtLink>
+    <NuxtLink class="nuxtlink" :to="`/cities/${getRandomPlace()}`">
+      <span>Take me anywhere!</span>
     </NuxtLink>
     <NuxtLink class="nuxtlink" to="/">
       <span>Logout</span>

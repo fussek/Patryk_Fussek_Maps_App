@@ -41,10 +41,10 @@
 
           </i>
         </div>
-        <vue-horizontal-list v-if="imagesLoaded" class="horizontal" :items=this.images :options="horizontalListOptions">
+        <vue-horizontal-list v-if="imagesLoaded" class="horizontal" :items=this.images :options="horizontalListOptions" v-viewer="viewerOptions">
           <template v-slot:default="{ item }">
-            <div class="image-container">
-              <img :src="item.urls.small" />
+            <div class="image-container" >
+              <img :src="item.urls.small" :full-src="item.urls.regular"/>
             </div>
           </template>
         </vue-horizontal-list>
@@ -77,6 +77,11 @@ import { createApi } from 'unsplash-js';
 import SmallCardDisplay from "~/components/SmallCardDisplay";
 import VueHorizontalList from "vue-horizontal-list"
 import SideBar from "~/components/SideBar";
+import fetch from 'cross-fetch';
+import 'viewerjs/dist/viewer.css'
+import Viewer from 'v-viewer'
+import Vue from 'vue'
+Vue.use(Viewer)
 
 export default {
   name: "place",
@@ -115,6 +120,23 @@ export default {
           { start: 576, end: 768, size: 2 },
           { size: 3 },
         ],
+      },
+      viewerOptions: {
+        inline: false,
+        button: true,
+        navbar: true,
+        title: false,
+        toolbar: false,
+        tooltip: false,
+        movable: false,
+        zoomable: false,
+        rotatable: false,
+        scalable: false,
+        transition: false,
+        fullscreen: false,
+        keyboard: true,
+        url: 'full-src'
+
       },
       images: [],
       imagesLoaded: false,
@@ -312,6 +334,7 @@ export default {
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
 }
 .image-container {
+  cursor: pointer;
   border-radius: 3px;
   overflow: hidden;
   position: relative;
