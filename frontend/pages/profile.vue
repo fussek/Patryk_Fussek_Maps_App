@@ -89,6 +89,9 @@ export default {
       places: {
         type: Array
       },
+      countryCodes: {
+        type: Array
+      },
       profiles: {
         type: Array
       },
@@ -127,7 +130,10 @@ export default {
     }
   },
   created() {
-
+    if (this.places){
+      var allCountries = this.places.map(a => a.countryCode)
+      this.countryCodes = [...new Set(allCountries)];
+    }
   },
   beforeDestroy() {
     if (this.map) {

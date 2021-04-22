@@ -16,17 +16,20 @@ public class Place {
 
     private String longitude;
 
+    private String countryCode;
+
     private Boolean visited;
 
     public Place() {
         super();
     }
 
-    public Place(String name, String fullName, String latitude, String longitude, Boolean visited) {
+    public Place(String name, String fullName, String latitude, String longitude, String countryCode, Boolean visited) {
         this.name = name;
         this.fullName = fullName;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.countryCode = countryCode;
         this.visited = visited;
     }
 
@@ -49,6 +52,8 @@ public class Place {
     public String getLongitude() {
         return longitude;
     }
+
+    public String getCountryCode() { return countryCode; }
 
     public Boolean getVisited() { return visited; }
 

@@ -110,9 +110,17 @@ export default {
       await this.$services.places.create(this.place.name,
         this.place.formatted_address,
         this.coordinates.lat,
-        this.coordinates.lng).then((data) => {
+        this.coordinates.lng,
+        this.fetchCountryCode()).then((data) => {
         this.$emit('created', data)
       })
+    },
+    fetchCountryCode() {
+      var countries = require("i18n-iso-countries");
+      countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
+      var n = this.place.formatted_address.lastIndexOf(',');
+      var country = this.place.formatted_address.substring(n + 2);
+      return countries.getAlpha2Code(country, "en")
     }
   }
 }

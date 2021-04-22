@@ -19,13 +19,14 @@ export default class PlaceApi {
           place.fullName,
           place.latitude,
           place.longitude,
+          place.countryCode,
           place.visited))
       })
       return places
     })
   }
 
-  create (name, fullName, latitude, longitude) {
+  create (name, fullName, latitude, longitude, countryCode) {
     return this.axios({
       method: 'post',
       url: 'places',
@@ -34,6 +35,7 @@ export default class PlaceApi {
         fullName,
         latitude,
         longitude,
+        countryCode,
         visited: false
       },
       withCredentials: true
@@ -52,6 +54,7 @@ export default class PlaceApi {
   //     fullName: place.fullName,
   //     latitude: place.latitude,
   //     longitude: place.longitude,
+  //     countryCode: place.countryCode,
   //     visited: true
   //     },
   //     withCredentials: true
