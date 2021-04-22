@@ -13,10 +13,12 @@
               :places="places"/>
           </div>
         </div>
-        <div class="cards-container">
-          <LargeCardDisplay
-            :places="places"
+        <div class="large-cards-container">
+          <LargeCardDisplay style="margin: 0 auto;"
+                            :places="places"
           />
+        </div>
+        <div class="cards-container">
           <SmallCardDisplay
             v-for="citiesList in citiesList"
             :key="citiesList.id"
@@ -88,11 +90,24 @@ export default {
 </script>
 
 <style scoped>
-.cards-container {
+.large-cards-container {
+  max-width: 1400px;
+  margin: 30px auto;
+  overflow: auto;
+  text-align: center;
+  min-height: 200px;
+  padding: 60px;
+  border-radius: 5px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+}
 
-  width: 100%;
-  min-height: 400px;
-  overflow: inherit;
+.cards-container {
+  max-width: 1400px;
+  margin: 30px auto;
+  overflow: auto;
+  text-align: center;
+  min-height: 200px;
+  padding: 60px;
   border-radius: 5px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
 }

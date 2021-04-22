@@ -3,7 +3,7 @@
       <div v-if="pictureUrl" class="image-container">
         <img class="large-img" :src=pictureUrl alt=""/>
       </div>
-      <div class="subtitle">TITLE • SNIPPET</div>
+      <div class="subtitle">CITY • COUNTRY</div>
 
       <h3>{{ getTitle(place) }}</h3>
       <p>{{ place.id }}</p>
