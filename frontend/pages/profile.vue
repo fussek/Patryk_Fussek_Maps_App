@@ -96,7 +96,10 @@ export default {
         type: Array
       },
       profile: Object,
-      friendsLoaded: false
+      friendsLoaded: false,
+      map: null,
+      polygonSeries: null,
+      polygonTemplate: null
     }
   },
   async asyncData(ctx) {
@@ -106,16 +109,16 @@ export default {
   },
   async mounted() {
 
-    let map = am4core.create("chartdiv", am4maps.MapChart)
-    map.geodata = am4geodata_worldLow
-    map.projection = new am4maps.projections.Miller()
-    var polygonSeries = map.series.push(new am4maps.MapPolygonSeries())
-    polygonSeries.useGeodata = true
-    polygonSeries.exclude = ["AQ"];
-    var polygonTemplate = polygonSeries.mapPolygons.template;
-    polygonTemplate.tooltipText = "{name}";
-    polygonTemplate.fill = am4core.color("#d4d4d4");
-    var hs = polygonTemplate.states.create("hover");
+    this.map = am4core.create("chartdiv", am4maps.MapChart)
+    this.map.geodata = am4geodata_worldLow
+    this.map.projection = new am4maps.projections.Miller()
+    this.polygonSeries = this.map.series.push(new am4maps.MapPolygonSeries())
+    this.polygonSeries.useGeodata = true
+    this.polygonSeries.exclude = ["AQ"];
+    this.polygonTemplate = this.polygonSeries.mapPolygons.template;
+    this.polygonTemplate.tooltipText = "{name}";
+    this.polygonTemplate.fill = am4core.color("#d4d4d4");
+    var hs = this.polygonTemplate.states.create("hover");
     hs.properties.fill = am4core.color("#a3a3a3");
 
 
@@ -130,8 +133,8 @@ export default {
     }
   },
   created() {
-    if (this.places){
-      var allCountries = this.places.map(a => a.countryCode)
+    if (this.places) {
+      var allCountries = this.places.map(a => a.countryCode);
       this.countryCodes = [...new Set(allCountries)];
     }
   },
@@ -139,6 +142,25 @@ export default {
     if (this.map) {
       this.map.dispose()
     }
+  },
+  watch: {
+    places: function() {
+      var allCountries = this.places.map(a => a.countryCode);
+      this.countryCodes = [...new Set(allCountries)];
+    },
+    countryCodes: function() {
+      var visitedSeries = this.map.series.push(new am4maps.MapPolygonSeries());
+      visitedSeries.name = "Visited countries";
+      visitedSeries.useGeodata = true;
+      visitedSeries.include = this.countryCodes;
+      visitedSeries.mapPolygons.template.tooltipText = "{name}";
+      visitedSeries.mapPolygons.template.fill = am4core.color("#16d9d9");
+      visitedSeries.fill = am4core.color("#16d9d9");
+      this.polygonTemplate = visitedSeries.mapPolygons.template;
+      var hs = this.polygonTemplate.states.create("hover");
+      hs.properties.fill = am4core.color("#009393");
+    }
+
   }
 }
 </script>
