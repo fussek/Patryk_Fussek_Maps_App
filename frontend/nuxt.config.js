@@ -32,6 +32,7 @@ export default {
     "~/plugins/interceptor.js",
     "~/plugins/bootstrapvue.js",
     "~/plugins/mapsplugin.js",
+    "~/plugins/composition-api-plugin.js",
     { src: "~/plugins/slide-menu.js", ssr: false },
     { src: '~/plugins/amcharts.js', ssr: false }
   ],
@@ -44,7 +45,16 @@ export default {
     // Doc: https://github.com/nuxt-community/eslint-module
     "@nuxtjs/eslint-module",
     '@nuxtjs/vuetify',
+    '@nuxtjs/fontawesome',
   ],
+  //todo: limit only to the icons used
+  fontawesome: {
+    component: 'fa',
+    icons: {
+      solid: true,
+      brands: true
+    }
+  },
   /*
    ** Nuxt.js modules
    */

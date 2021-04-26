@@ -1,23 +1,41 @@
 <template>
 <div>
-  <Slide disableOutsideClick isOpen noOverlay disableEsc :closeOnNavigation="true" width="400" >
+  <Slide disableOutsideClick isOpen noOverlay disableEsc :closeOnNavigation="false" width="400" >
     <NuxtLink class="nuxtlink" to="/places">
-      <span>Home</span>
+      <span>
+        <fa icon="home"/>
+        Home
+      </span>
     </NuxtLink>
     <NuxtLink class="nuxtlink" to="/profile">
-      <span>Profile</span>
+      <span>
+        <fa icon="user"/>
+        Profile
+      </span>
     </NuxtLink>
     <NuxtLink class="nuxtlink" to="/route">
-      <span>Route Planer</span>
+      <span>
+        <fa icon="map"/>
+        Route Planer
+      </span>
     </NuxtLink>
     <NuxtLink class="nuxtlink" to="/discover">
-      <span>Discover</span>
+      <span>
+        <fa icon="globe"/>
+        Discover
+      </span>
     </NuxtLink>
     <NuxtLink class="nuxtlink" :to="`/cities/${getRandomPlace()}`">
-      <span>Take me anywhere!</span>
+      <span>
+        <fa icon="compass"/>
+        Take me anywhere!
+      </span>
     </NuxtLink>
     <NuxtLink class="nuxtlink" to="/">
-      <span>Logout</span>
+      <span>
+        <fa icon="power-off"/>
+        Logout
+      </span>
     </NuxtLink>
   </Slide>
 </div>
