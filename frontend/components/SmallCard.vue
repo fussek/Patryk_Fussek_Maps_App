@@ -1,17 +1,22 @@
 <template>
     <nuxt-link :to="`/cities/${city.name}`" class="card-container">
       <div class="text-overlay" v-if="pictureUrl">
-        <img class="image" :src=pictureUrl alt=""/>
+        <img class="image" :src=pictureUrl alt="" v-tooltip.top-center="msg" />
       </div>
     </nuxt-link>
 </template>
 
 <script>
+import Vue from 'vue'
+import VTooltip from 'v-tooltip'
+Vue.use(VTooltip)
+
     export default {
         props: ["city"],
       data(){
         return {
-          pictureUrl: null
+          pictureUrl: null,
+          msg: this.city.name
         }
       },
       async created() {
@@ -20,10 +25,20 @@
         }
       },
       methods: {
+        //todo: JSON.parse: unexpected character at line 1 column 1 of the JSON data
       async getPlacePicture () {
-        const res = await fetch('https://picsum.photos/300/200')
-        const data = await res
-        return data.url
+        var imageQuery = this.city.name.replace(/\s+/g, '-').replace(/,/g, '').toLowerCase();
+        const res = await fetch(`https://api.teleport.org/api/urban_areas/slug:${imageQuery}/images/`)
+        const data = await res.json()
+        var imageLink
+        if (data.photos[0]){
+          imageLink = data.photos[0].image.mobile
+        } else {
+          var randomRes = await fetch('https://picsum.photos/300/200')
+          const randomData = await randomRes
+          imageLink = randomData.url
+        }
+        return imageLink
       }
       }
     }
@@ -48,17 +63,6 @@
     }
     .text-overlay:hover {
       opacity: 0.4;
-    }
-    .text-overlay:hover .text {
-      visibility: visible;
-      opacity: 1;
-      color: white;
-      font-size: 20px;
-      position: relative;
-      text-decoration: none;
-      -webkit-transform: translate(-50%, -50%);
-      -ms-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
     }
     .image {
         width: 100%;

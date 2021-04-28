@@ -35,7 +35,7 @@ export default {
 <style scoped>
 
     .container {
-      width: 50%;
+      width: 80%;
       min-height: 20vh;
     }
 
