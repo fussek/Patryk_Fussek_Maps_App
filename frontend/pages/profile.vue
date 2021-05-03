@@ -30,6 +30,8 @@
           <div class="chartdiv" id="chartdiv"></div>
           <LargeCardDisplay style="margin: 0 auto;"
                             :places="places"
+                            @markCountry="markCountry"
+                            @unmarkCountry="unmarkCountry"
           />
         </div>
       </div>
@@ -95,6 +97,7 @@ export default {
       profiles: {
         type: Array
       },
+      country: null,
       profile: Object,
       friendsLoaded: false,
       map: null,
@@ -108,7 +111,7 @@ export default {
     }
   },
   async mounted() {
-
+    //todo: OPTIMIZE !!!!!!! ; C
     this.map = am4core.create("chartdiv", am4maps.MapChart)
     this.map.geodata = am4geodata_worldLow
     this.map.projection = new am4maps.projections.Miller()
@@ -130,6 +133,18 @@ export default {
       const res = await fetch('https://tinyfac.es/api/users')
       const data = await res.json()
       this.profiles = data
+    },
+    markCountry(countryCode) {
+      //todo: super performance inefficient ...
+      this.country = this.map.series.push(new am4maps.MapPolygonSeries());
+      this.country.useGeodata = true;
+      this.country.include = [countryCode]
+      // this.polygonTemplate = this.country.mapPolygons.template;
+      // this.polygonTemplate.tooltipText = "{name}";
+      this.country.mapPolygons.template.fill = am4core.color("#93003b");
+    },
+    unmarkCountry() {
+      this.map.series.pop()
     }
   },
   created() {

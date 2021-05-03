@@ -9,7 +9,7 @@
         <div class="cards-container">
           <vue-horizontal-list class="horizontal" :items=this.places :options="options">
             <template v-slot:default="{ item }">
-              <LargeCard :place="item"/>
+              <LargeCard :place="item" v-on="$listeners"/>
             </template>
           </vue-horizontal-list>
         </div>
@@ -25,7 +25,15 @@ import VueHorizontalList from "vue-horizontal-list"
         VueHorizontalList,
         LargeCard
       },
-        props: ['places'],
+        props: {
+          places: {
+            type: Array,
+            default () {
+              return []
+            }
+          },
+          emits: ['markCountry', 'unmarkCountry']
+        },
       data() {
         return {
           options: {

@@ -1,7 +1,9 @@
 <template>
   <nuxt-link :to="`/cities/${place.name}`" class="card">
       <div v-if="pictureUrl" class="image-container">
-        <img class="large-img" :src=pictureUrl alt=""/>
+        <img class="large-img" :src=pictureUrl alt=""
+             @mouseover="$emit('markCountry', place.countryCode)"
+             @mouseleave="$emit('unmarkCountry')"/>
       </div>
       <div class="subtitle">CITY • COUNTRY</div>
 
@@ -43,7 +45,7 @@
 .card{
   color: black;
   text-decoration: none;
-  transition: 0.3s;
+  /*transition: 0.3s;*/
 }
 .card:hover {
   color: darkgrey;

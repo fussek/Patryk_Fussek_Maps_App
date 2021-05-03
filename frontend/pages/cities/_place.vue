@@ -31,11 +31,11 @@
               {{ getPopulation() }}
             </h1>
             <h1 class="title">
-              <button v-if="isAlreadyAdded" class="button-deny">
-                Already added
+              <button v-if="isAlreadyAdded" class="button-delete" @click=deleteFromPlaces()>
+                Delete from your places
               </button>
-              <button v-else class="button-allow" @click=addToPlaces()>
-                Add to your place!
+              <button v-else class="button-add" @click=addToPlaces()>
+                Add to your places!
               </button>
             </h1>
 
@@ -211,17 +211,24 @@ export default {
       await this.$services.places.create(this.place.name,
         this.place.full_name,
         this.coordinates.lat,
-        this.coordinates.lng).then((data) => {
+        this.coordinates.lng,
+        this.fetchCountryCode()).then((data) => {
         this.$emit('created', data)
       })
       alert('Added !')
       this.isAlreadyAdded = true
     },
+    async deleteFromPlaces() {
+      this.$services.places.deleteItem(this.place.id).then(() => {
+        alert('Deleted !')
+      })
+      this.isAlreadyAdded = false
+    },
     getRandomPlace() {
       return citiesList[0].cities[Math.floor(Math.random() * citiesList[0].cities.length)].name
     },
     getUnsplashImages() {
-      const unsplash = createApi({ accessKey: 'UNSPLASH_API_KEY' });
+      const unsplash = createApi({ accessKey: 'ePT1Bui9LN9iWox6z__-vq4TSx7hWR53I8DxRKYqn-k' });
       unsplash.search.getPhotos({
         query: this.query,
         page: 1,
@@ -242,6 +249,13 @@ export default {
         }
       })
 
+    },
+    fetchCountryCode() {
+      var countries = require("i18n-iso-countries");
+      countries.registerLocale(require("i18n-iso-countries/langs/en.json"));
+      var n = this.place.full_name.lastIndexOf(',');
+      var country = this.place.full_name.substring(n + 2);
+      return countries.getAlpha2Code(country, "en")
     }
   }
 }
@@ -273,7 +287,7 @@ export default {
 
 }
 
-.button-allow{
+.button-add{
   display:inline-block;
   padding:0.3em 1.2em;
   margin:0 0.3em 0.3em 0;
@@ -300,14 +314,14 @@ export default {
     margin:0.2em auto;
   }
 }
-.button-deny{
+.button-delete{
   display:inline-block;
   padding:0.3em 1.2em;
   margin:0 0.3em 0.3em 0;
   border-radius:2em;
   box-sizing: border-box;
   text-decoration:none;
-  cursor: initial;
+  cursor: pointer;
   font-family:'Roboto',sans-serif;
   font-weight:300;
   color:#FFFFFF;
