@@ -31,7 +31,7 @@ Vue.use(VTooltip)
         const res = await fetch(`https://api.teleport.org/api/urban_areas/slug:${imageQuery}/images/`)
         const data = await res.json()
         var imageLink
-        if (data.photos[0]){
+        if (data.photos){
           imageLink = data.photos[0].image.mobile
         } else {
           var randomRes = await fetch('https://picsum.photos/300/200')

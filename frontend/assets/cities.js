@@ -1,4 +1,4 @@
-
+// todo: remove duplicates
 export const citiesList = [
   {
     id: 1,
@@ -1067,6 +1067,1198 @@ export const citiesList = [
       {
         href: 'https://api.teleport.org/api/urban_areas/slug:zurich/',
         name: 'Zurich'
+      },
+      {
+        href: '',
+        name: 'Abidjan'
+      },
+      {
+        href: '',
+        name: 'Accra'
+      },
+      {
+        href: '',
+        name: 'Adana'
+      },
+      {
+        href: '',
+        name: 'Addis Ababa'
+      },
+      {
+        href: '',
+        name: 'Adelaide'
+      },
+      {
+        href: '',
+        name: 'Agra'
+      },
+      {
+        href: '',
+        name: 'Ahmadabad'
+      },
+      {
+        href: '',
+        name: 'Aleppo(Halab)'
+      },
+      {
+        href: '',
+        name: 'Alexandria'
+      },
+      {
+        href: '',
+        name: 'Algiers'
+      },
+      {
+        href: '',
+        name: 'Allahabad'
+      },
+      {
+        href: '',
+        name: 'Almaty'
+      },
+      {
+        href: '',
+        name: 'Amman'
+      },
+      {
+        href: '',
+        name: 'Amritsar'
+      },
+      {
+        href: '',
+        name: 'Ankara'
+      },
+      {
+        href: '',
+        name: 'Anshan'
+      },
+      {
+        href: '',
+        name: 'Baghdad'
+      },
+      {
+        href: '',
+        name: 'Baku'
+      },
+      {
+        href: '',
+        name: 'Bandung'
+      },
+      {
+        href: '',
+        name: 'Bangalore'
+      },
+      {
+        href: '',
+        name: 'Bangkok'
+      },
+      {
+        href: '',
+        name: 'Baotou'
+      },
+      {
+        href: '',
+        name: 'Barcelona'
+      },
+      {
+        href: '',
+        name: 'Barquisimeto'
+      },
+      {
+        href: '',
+        name: 'Barranquilla'
+      },
+      {
+        href: '',
+        name: 'Basrah'
+      },
+      {
+        href: '',
+        name: 'Beijing'
+      },
+      {
+        href: '',
+        name: 'Beirut'
+      },
+      {
+        href: '',
+        name: 'Belem'
+      },
+      {
+        href: '',
+        name: 'Belgrade'
+      },
+      {
+        href: '',
+        name: 'Belo Horizonte'
+      },
+      {
+        href: '',
+        name: 'Benghazi'
+      },
+      {
+        href: '',
+        name: 'Benin'
+      },
+      {
+        href: '',
+        name: 'Berlin'
+      },
+      {
+        href: '',
+        name: 'Bhopal'
+      },
+      {
+        href: '',
+        name: 'Birmingham'
+      },
+      {
+        href: '',
+        name: 'Bogota'
+      },
+      {
+        href: '',
+        name: 'Brasilia'
+      },
+      {
+        href: '',
+        name: 'Brazzaville'
+      },
+      {
+        href: '',
+        name: 'Brisbane'
+      },
+      {
+        href: '',
+        name: 'Bucharest'
+      },
+      {
+        href: '',
+        name: 'Budapest'
+      },
+      {
+        href: '',
+        name: 'Buenos Aires'
+      },
+      {
+        href: '',
+        name: 'Bursa'
+      },
+      {
+        href: '',
+        name: 'Busan'
+      },
+      {
+        href: '',
+        name: 'Cairo'
+      },
+      {
+        href: '',
+        name: 'Cali'
+      },
+      {
+        href: '',
+        name: 'Campinas'
+      },
+      {
+        href: '',
+        name: 'Capetown'
+      },
+      {
+        href: '',
+        name: 'Caracas'
+      },
+      {
+        href: '',
+        name: 'Casablanca'
+      },
+      {
+        href: '',
+        name: 'Changchun'
+      },
+      {
+        href: '',
+        name: 'Changsha'
+      },
+      {
+        href: '',
+        name: 'Changzhou'
+      },
+      {
+        href: '',
+        name: 'Chelyabinsk'
+      },
+      {
+        href: '',
+        name: 'Chengdu'
+      },
+      {
+        href: '',
+        name: 'Chennai'
+      },
+      {
+        href: '',
+        name: 'Chicago'
+      },
+      {
+        href: '',
+        name: 'Chittagong'
+      },
+      {
+        href: '',
+        name: 'Chongquin'
+      },
+      {
+        href: '',
+        name: 'Ciudad Juarez'
+      },
+      {
+        href: '',
+        name: 'Conakry'
+      },
+      {
+        href: '',
+        name: 'Copenhagen'
+      },
+      {
+        href: '',
+        name: 'Cordoba'
+      },
+      {
+        href: '',
+        name: 'Curitiba'
+      },
+      {
+        href: '',
+        name: 'Daegu'
+      },
+      {
+        href: '',
+        name: 'Daejon'
+      },
+      {
+        href: '',
+        name: 'Dakar'
+      },
+      {
+        href: '',
+        name: 'Dalian'
+      },
+      {
+        href: '',
+        name: 'Dallas'
+      },
+      {
+        href: '',
+        name: 'Damascus'
+      },
+      {
+        href: '',
+        name: 'Dar Es Salaam'
+      },
+      {
+        href: '',
+        name: 'Datong'
+      },
+      {
+        href: '',
+        name: 'Delhi'
+      },
+      {
+        href: '',
+        name: 'Dhaka'
+      },
+      {
+        href: '',
+        name: 'Dnipropetrovsk'
+      },
+      {
+        href: '',
+        name: 'Donetsk'
+      },
+      {
+        href: '',
+        name: 'Douala'
+      },
+      {
+        href: '',
+        name: 'Durban'
+      },
+      {
+        href: '',
+        name: 'Ecatepec'
+      },
+      {
+        href: '',
+        name: 'Ekaterinburg'
+      },
+      {
+        href: '',
+        name: 'Faisalabad'
+      },
+      {
+        href: '',
+        name: 'Fortaleza'
+      },
+      {
+        href: '',
+        name: 'Foshan'
+      },
+      {
+        href: '',
+        name: 'Freetown'
+      },
+      {
+        href: '',
+        name: 'Fukuoka'
+      },
+      {
+        href: '',
+        name: 'Fuzhou'
+      },
+      {
+        href: '',
+        name: 'Giza'
+      },
+      {
+        href: '',
+        name: 'Goiania'
+      },
+      {
+        href: '',
+        name: 'Guadalajara'
+      },
+      {
+        href: '',
+        name: 'Guangzhou'
+      },
+      {
+        href: '',
+        name: 'Guarulhos'
+      },
+      {
+        href: '',
+        name: 'Guatamala City'
+      },
+      {
+        href: '',
+        name: 'Guayaquil'
+      },
+      {
+        href: '',
+        name: 'Guiyang'
+      },
+      {
+        href: '',
+        name: 'Gujranwala'
+      },
+      {
+        href: '',
+        name: 'Gwangju'
+      },
+      {
+        href: '',
+        name: 'Haiphong'
+      },
+      {
+        href: '',
+        name: 'Hamburg'
+      },
+      {
+        href: '',
+        name: 'Handan'
+      },
+      {
+        href: '',
+        name: 'Hangzhou'
+      },
+      {
+        href: '',
+        name: 'Hanoi'
+      },
+      {
+        href: '',
+        name: 'Haora'
+      },
+      {
+        href: '',
+        name: 'Harare'
+      },
+      {
+        href: '',
+        name: 'Harbin'
+      },
+      {
+        href: '',
+        name: 'Havana'
+      },
+      {
+        href: '',
+        name: 'Hefei'
+      },
+      {
+        href: '',
+        name: 'Hiroshima'
+      },
+      {
+        href: '',
+        name: 'Ho Chi Minh City'
+      },
+      {
+        href: '',
+        name: 'Hong Kong'
+      },
+      {
+        href: '',
+        name: 'Houston'
+      },
+      {
+        href: '',
+        name: 'Hyderabad'
+      },
+      {
+        href: '',
+        name: 'Hyderabad'
+      },
+      {
+        href: '',
+        name: 'Ibadan'
+      },
+      {
+        href: '',
+        name: 'Incheon'
+      },
+      {
+        href: '',
+        name: 'Indore'
+      },
+      {
+        href: '',
+        name: 'Irbil'
+      },
+      {
+        href: '',
+        name: 'Isfahen'
+      },
+      {
+        href: '',
+        name: 'Istanbul'
+      },
+      {
+        href: '',
+        name: 'Izmir'
+      },
+      {
+        href: '',
+        name: 'Jaipur'
+      },
+      {
+        href: '',
+        name: 'Jakarta'
+      },
+      {
+        href: '',
+        name: 'Jeddah'
+      },
+      {
+        href: '',
+        name: 'Jilin'
+      },
+      {
+        href: '',
+        name: 'Jinan'
+      },
+      {
+        href: '',
+        name: 'Jodphur'
+      },
+      {
+        href: '',
+        name: 'Johannesburg'
+      },
+      {
+        href: '',
+        name: 'Kabul'
+      },
+      {
+        href: '',
+        name: 'Kaduna'
+      },
+      {
+        href: '',
+        name: 'Kano'
+      },
+      {
+        href: '',
+        name: 'Kanpur'
+      },
+      {
+        href: '',
+        name: 'Kaohsiung'
+      },
+      {
+        href: '',
+        name: 'Karachi'
+      },
+      {
+        href: '',
+        name: 'Kawasaki'
+      },
+      {
+        href: '',
+        name: 'Kazan'
+      },
+      {
+        href: '',
+        name: 'Kharkiv'
+      },
+      {
+        href: '',
+        name: 'Khartoum'
+      },
+      {
+        href: '',
+        name: 'Khulna'
+      },
+      {
+        href: '',
+        name: 'Kiev'
+      },
+      {
+        href: '',
+        name: 'Kinshasa'
+      },
+      {
+        href: '',
+        name: 'Kitakyushu'
+      },
+      {
+        href: '',
+        name: 'Kobe'
+      },
+      {
+        href: '',
+        name: 'Kolkata'
+      },
+      {
+        href: '',
+        name: 'Kowloon'
+      },
+      {
+        href: '',
+        name: 'Kuala Lumpur'
+      },
+      {
+        href: '',
+        name: 'Kunming'
+      },
+      {
+        href: '',
+        name: 'Kyoto'
+      },
+      {
+        href: '',
+        name: 'La Paz'
+      },
+      {
+        href: '',
+        name: 'Lagos'
+      },
+      {
+        href: '',
+        name: 'Lahore'
+      },
+      {
+        href: '',
+        name: 'Lanzhou'
+      },
+      {
+        href: '',
+        name: 'Leon'
+      },
+      {
+        href: '',
+        name: 'Lima'
+      },
+      {
+        href: '',
+        name: 'Los Angeles'
+      },
+      {
+        href: '',
+        name: 'Luanda'
+      },
+      {
+        href: '',
+        name: 'Lubumbashi'
+      },
+      {
+        href: '',
+        name: 'Lucknow'
+      },
+      {
+        href: '',
+        name: 'Ludhiana'
+      },
+      {
+        href: '',
+        name: 'Luoyang'
+      },
+      {
+        href: '',
+        name: 'Lusaka'
+      },
+      {
+        href: '',
+        name: 'Madrid'
+      },
+      {
+        href: '',
+        name: 'Maiduguri'
+      },
+      {
+        href: '',
+        name: 'Makassar'
+      },
+      {
+        href: '',
+        name: 'Managua'
+      },
+      {
+        href: '',
+        name: 'Manaus'
+      },
+      {
+        href: '',
+        name: 'Manila'
+      },
+      {
+        href: '',
+        name: 'Maputo'
+      },
+      {
+        href: '',
+        name: 'Maracaibo'
+      },
+      {
+        href: '',
+        name: 'Mashhad'
+      },
+      {
+        href: '',
+        name: 'Mecca'
+      },
+      {
+        href: '',
+        name: 'Medan'
+      },
+      {
+        href: '',
+        name: 'Medellin'
+      },
+      {
+        href: '',
+        name: 'Medina'
+      },
+      {
+        href: '',
+        name: 'Meerut'
+      },
+      {
+        href: '',
+        name: 'Melbourne'
+      },
+      {
+        href: '',
+        name: 'Mexicali'
+      },
+      {
+        href: '',
+        name: 'Mexico City'
+      },
+      {
+        href: '',
+        name: 'Milan'
+      },
+      {
+        href: '',
+        name: 'Minsk'
+      },
+      {
+        href: '',
+        name: 'Mogadishu'
+      },
+      {
+        href: '',
+        name: 'Monterrey'
+      },
+      {
+        href: '',
+        name: 'Montevideo'
+      },
+      {
+        href: '',
+        name: 'Montreal'
+      },
+      {
+        href: '',
+        name: 'Moscow'
+      },
+      {
+        href: '',
+        name: 'Mosul'
+      },
+      {
+        href: '',
+        name: 'Multan'
+      },
+      {
+        href: '',
+        name: 'Mumbai (Bombay)'
+      },
+      {
+        href: '',
+        name: 'Munich'
+      },
+      {
+        href: '',
+        name: 'Nagoya'
+      },
+      {
+        href: '',
+        name: 'Nagpur'
+      },
+      {
+        href: '',
+        name: 'Nairobi'
+      },
+      {
+        href: '',
+        name: 'Nanchang'
+      },
+      {
+        href: '',
+        name: 'Nanjing'
+      },
+      {
+        href: '',
+        name: 'Nanning'
+      },
+      {
+        href: '',
+        name: 'Napoli'
+      },
+      {
+        href: '',
+        name: 'Nashik'
+      },
+      {
+        href: '',
+        name: 'New York City'
+      },
+      {
+        href: '',
+        name: 'Nezahualcoyotl'
+      },
+      {
+        href: '',
+        name: 'Nizhny Novgorod'
+      },
+      {
+        href: '',
+        name: 'Novosibirsk'
+      },
+      {
+        href: '',
+        name: 'Odessa'
+      },
+      {
+        href: '',
+        name: 'Omdurman'
+      },
+      {
+        href: '',
+        name: 'Omsk'
+      },
+      {
+        href: '',
+        name: 'Osaka'
+      },
+      {
+        href: '',
+        name: 'Palembang'
+      },
+      {
+        href: '',
+        name: 'Patna'
+      },
+      {
+        href: '',
+        name: 'Perm'
+      },
+      {
+        href: '',
+        name: 'Perth'
+      },
+      {
+        href: '',
+        name: 'Peshawar'
+      },
+      {
+        href: '',
+        name: 'Philadelphia'
+      },
+      {
+        href: '',
+        name: 'Phnom Penh'
+      },
+      {
+        href: '',
+        name: 'Phoenix'
+      },
+      {
+        href: '',
+        name: 'Pimpri Chinchwad'
+      },
+      {
+        href: '',
+        name: 'Port Harcourt'
+      },
+      {
+        href: '',
+        name: 'Port-Au-Prince'
+      },
+      {
+        href: '',
+        name: 'Porto Alegre'
+      },
+      {
+        href: '',
+        name: 'Prague'
+      },
+      {
+        href: '',
+        name: 'Puebla'
+      },
+      {
+        href: '',
+        name: 'Pune'
+      },
+      {
+        href: '',
+        name: 'Pyongyang'
+      },
+      {
+        href: '',
+        name: 'Qingdao'
+      },
+      {
+        href: '',
+        name: 'Qiqihar'
+      },
+      {
+        href: '',
+        name: 'Quito'
+      },
+      {
+        href: '',
+        name: 'Rabat'
+      },
+      {
+        href: '',
+        name: 'Rajkot'
+      },
+      {
+        href: '',
+        name: 'Ranchi'
+      },
+      {
+        href: '',
+        name: 'Rawalpindi'
+      },
+      {
+        href: '',
+        name: 'Recife'
+      },
+      {
+        href: '',
+        name: 'Rio De Janeiro'
+      },
+      {
+        href: '',
+        name: 'Riyadh'
+      },
+      {
+        href: '',
+        name: 'Rome'
+      },
+      {
+        href: '',
+        name: 'Rosario'
+      },
+      {
+        href: '',
+        name: 'Rostov On Don'
+      },
+      {
+        href: '',
+        name: 'Salvador'
+      },
+      {
+        href: '',
+        name: 'Samara'
+      },
+      {
+        href: '',
+        name: 'San Antonio'
+      },
+      {
+        href: '',
+        name: 'San Diego'
+      },
+      {
+        href: '',
+        name: 'Sanaa'
+      },
+      {
+        href: '',
+        name: 'Santa Cruz'
+      },
+      {
+        href: '',
+        name: 'Santiago'
+      },
+      {
+        href: '',
+        name: 'Santo Domingo'
+      },
+      {
+        href: '',
+        name: 'Sao Paulo'
+      },
+      {
+        href: '',
+        name: 'Sapporo'
+      },
+      {
+        href: '',
+        name: 'Semarang'
+      },
+      {
+        href: '',
+        name: 'Sendai'
+      },
+      {
+        href: '',
+        name: 'Seongnam'
+      },
+      {
+        href: '',
+        name: 'Seoul'
+      },
+      {
+        href: '',
+        name: 'Shanghai'
+      },
+      {
+        href: '',
+        name: 'Shenyang'
+      },
+      {
+        href: '',
+        name: 'Shenzhen'
+      },
+      {
+        href: '',
+        name: 'Shiraz'
+      },
+      {
+        href: '',
+        name: 'Shiziahuang'
+      },
+      {
+        href: '',
+        name: 'Shubra El Kheima'
+      },
+      {
+        href: '',
+        name: 'Singapore'
+      },
+      {
+        href: '',
+        name: 'Sofia'
+      },
+      {
+        href: '',
+        name: 'Soweto'
+      },
+      {
+        href: '',
+        name: 'St Petersburg'
+      },
+      {
+        href: '',
+        name: 'Stockholm'
+      },
+      {
+        href: '',
+        name: 'Surabaya'
+      },
+      {
+        href: '',
+        name: 'Surat'
+      },
+      {
+        href: '',
+        name: 'Suzhou'
+      },
+      {
+        href: '',
+        name: 'Sydney'
+      },
+      {
+        href: '',
+        name: 'Tabriz'
+      },
+      {
+        href: '',
+        name: 'Taichung'
+      },
+      {
+        href: '',
+        name: 'Taipei'
+      },
+      {
+        href: '',
+        name: 'Taiyuan'
+      },
+      {
+        href: '',
+        name: 'Tangshan'
+      },
+      {
+        href: '',
+        name: 'Tashkent'
+      },
+      {
+        href: '',
+        name: 'Tbilisi'
+      },
+      {
+        href: '',
+        name: 'Tegucigalpa'
+      },
+      {
+        href: '',
+        name: 'Tehran'
+      },
+      {
+        href: '',
+        name: 'Tianjin'
+      },
+      {
+        href: '',
+        name: 'Tijuana'
+      },
+      {
+        href: '',
+        name: 'Tokyo'
+      },
+      {
+        href: '',
+        name: 'Toronto'
+      },
+      {
+        href: '',
+        name: 'Tripoli'
+      },
+      {
+        href: '',
+        name: 'Tshwane (Pretoria)'
+      },
+      {
+        href: '',
+        name: 'Tunis'
+      },
+      {
+        href: '',
+        name: 'Ufa'
+      },
+      {
+        href: '',
+        name: 'Ulsan'
+      },
+      {
+        href: '',
+        name: 'Urumqi'
+      },
+      {
+        href: '',
+        name: 'Vadodara'
+      },
+      {
+        href: '',
+        name: 'Valencia'
+      },
+      {
+        href: '',
+        name: 'Varanasi'
+      },
+      {
+        href: '',
+        name: 'Vienna'
+      },
+      {
+        href: '',
+        name: 'Volgograd'
+      },
+      {
+        href: '',
+        name: 'Warsaw'
+      },
+      {
+        href: '',
+        name: 'Wuhan'
+      },
+      {
+        href: '',
+        name: 'Wuxi'
+      },
+      {
+        href: '',
+        name: 'Xian'
+      },
+      {
+        href: '',
+        name: 'Xuzhou'
+      },
+      {
+        href: '',
+        name: 'Yangon'
+      },
+      {
+        href: '',
+        name: 'Yaounde'
+      },
+      {
+        href: '',
+        name: 'Yerevan'
+      },
+      {
+        href: '',
+        name: 'Yokohama'
+      },
+      {
+        href: '',
+        name: 'Zapopan'
+      },
+      {
+        href: '',
+        name: 'Zhengzhou'
+      },
+      {
+        href: '',
+        name: 'Zibo'
       }
     ]
   }
