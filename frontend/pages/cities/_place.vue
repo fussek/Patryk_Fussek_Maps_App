@@ -49,18 +49,12 @@
           </template>
         </vue-horizontal-list>
       </div>
-      <div class="grid">
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sagittis libero orci. Mauris mattis libero ut risus dictum ornare eu id lacus. Suspendisse scelerisque eget enim elementum ultrices. Phasellus sed dolor sem. Nam et nulla eu tortor efficitur efficitur non ut sem. Maecenas quis nibh metus. Nunc eu nibh lorem.
-
-          Nulla facilisi. Sed dignissim ultricies iaculis. Nunc et est ipsum. Mauris nisl orci, ornare sed euismod ut, viverra eget nisi. Mauris non mi consectetur, viverra ante cursus, pharetra lacus. Suspendisse volutpat urna et diam consequat lacinia. Sed hendrerit interdum quam, sit amet faucibus tortor commodo sed. Ut sit amet felis et ligula mollis porttitor. Vivamus quis dapibus magna. Ut accumsan ante interdum lorem mollis, vel luctus turpis tincidunt. In finibus imperdiet euismod. Pellentesque sagittis volutpat erat rhoncus tristique. Phasellus fringilla eget tellus in auctor. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-
-          In vitae eleifend dolor. Fusce luctus vestibulum ligula, vel laoreet ex porta a. Vestibulum laoreet pretium nulla, at accumsan orci mattis id. Etiam a nunc sed leo elementum suscipit. Duis aliquam pulvinar tempor. Sed hendrerit libero sed nulla viverra, eget varius nisi dapibus. Vivamus tristique tristiquelibero vitae tempor.
+      <div class="grid" v-if="this.wikiDescription">
+        <p>
+          {{ this.wikiDescription.slice(0, (this.wikiDescription.length)/2)}}
         </p>
-        <p>Suspendisse sit amet sodales nibh, vel tristique arcu. Vestibulum mattis venenatis nisi sit amet fermentum. Curabitur nec justo elit. Duis quis velit pharetra, suscipit massa in, porta mi. Nullam et sapien vitae mauris condimentum semper. Morbi a sapien non dolor imperdiet aliquet eu quis tortor. Morbi ultricies gravida ipsum, id rutrum tellus. Cras finibus nibh odio, a commodo sapien dignissim id. Vivamus rutrum arcu dolor, vel dignissim ante ultricies nec.
-
-          Cras in aliquam risus. Aenean consequat, neque eu mattis placerat, eros lacus facilisis mi, et faucibus nisl sem finibus tellus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam eu ultricies justo. Aliquam ut purus pulvinar, dignissim purus sit amet, gravida neque. Aliquam velit purus, sollicitudin at velit at, elementum consequat velit. Maecenas vel diam ultrices, eleifend ex in, condimentum enim.
-
-          Cras consectetur vitae elit at laoreet. Sed sodales tempor ligula. Maecenas imperdiet ultricies tellus, ac imperdiet ex gravida sed. Donec laoreet ligula in dolor vestibulum auctor. Nullam quis quam est. Ut non diam lacus. Sed ut urna pellentesque, interdum leo eu, sodales ex. Praesent elementum metus nec ullamcorper bibendum. Sed scelerisque lacinia eleifend. Donec dapibus iaculis ultrices.
+        <p>
+          {{this.wikiDescription.slice((this.wikiDescription.length)/2, this.wikiDescription.length -1)}}
         </p>
       </div>
       <NuxtLink class="link" to="/places">⌂</NuxtLink>
@@ -81,6 +75,8 @@ import fetch from 'cross-fetch';
 import 'viewerjs/dist/viewer.css'
 import Viewer from 'v-viewer'
 import Vue from 'vue'
+import axios from "axios";
+
 Vue.use(Viewer)
 
 export default {
@@ -144,6 +140,7 @@ export default {
       showMap: false,
       flagUrl: null,
       countryCode: null,
+      wikiDescription: null,
       alternateCityNames: [],
       query: this.$route.params.place,
     }
@@ -160,6 +157,7 @@ export default {
       }
       this.alternateCityNames = await this.findAlternateNames()
       await this.getUnsplashImages()
+      await this.fetchWikipediaInfo()
       this.isAlreadyAdded = await this.findInUserPlaces()
     }
   },
@@ -172,8 +170,14 @@ export default {
       return await queryLink.json()
     },
     async fetchFlagUrl() {
+      // todo: this method overrides countryCode variable which is retrieved from Place object
       this.countryCode = this.place._links["city:country"].href.replace(/[&\/\\#,+_()$~%.'":*?<>{}a-z0-9]/g, '').toLowerCase();
       return `https://flagcdn.com/w320/${this.countryCode}.png`
+    },
+    async fetchWikipediaInfo() {
+      const res = await fetch(`https://en.wikipedia.org/w/api.php?format=json&origin=*&action=query&prop=extracts&exintro=1&explaintext=1&titles=${this.place.name}`)
+      const data = await res.json()
+      this.wikiDescription = Object.entries(data.query.pages)[0][1].extract
     },
     getLatitude() {
       return this.place.location.latlon.latitude
@@ -363,5 +367,10 @@ export default {
   margin-bottom: 5vh;
   justify-content: space-between;
 
+}
+.wikiDescription{
+  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+  "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-weight: 8;
 }
 </style>
