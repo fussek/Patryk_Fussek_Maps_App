@@ -1,3 +1,5 @@
+const nodeExternals = require('webpack-node-externals')
+
 export default {
   mode: "universal",
   /*
@@ -33,6 +35,7 @@ export default {
     "~/plugins/bootstrapvue.js",
     "~/plugins/mapsplugin.js",
     "~/plugins/composition-api-plugin.js",
+    // { src: '~/plugins/vuetify-google-autocomplete.js', ssr: false},
     { src: "~/plugins/slide-menu.js", ssr: false },
     { src: '~/plugins/amcharts.js', ssr: false }
   ],
@@ -51,8 +54,8 @@ export default {
   fontawesome: {
     component: 'fa',
     icons: {
-      solid: true,
-      brands: true
+      solid: ['faHome', 'faUser', 'faMap', 'faGlobe', 'faCompass', 'faPowerOff'],
+      brands: ['faGoogle']
     }
   },
   /*
@@ -81,6 +84,7 @@ export default {
     transpile: [
       'vue2-google-maps',
       'vue-browser-geolocation',
+      // 'vuetify-google-autocomplete',
       '@amcharts/amcharts4'
     ],
     /*
