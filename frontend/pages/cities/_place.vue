@@ -7,6 +7,15 @@
     <div v-if="place" class="place-container">
       <div>
         <div>
+          <CarouselCard :interval="7000" height="700px" arrow="always">
+            <CarouselCardItem v-for="image in this.images" :key="image">
+              <div class="image-container" >
+                <img :src="image.urls.regular" :full-src="image.urls.full"/>
+              </div>
+            </CarouselCardItem>
+          </CarouselCard>
+        </div>
+        <div>
           <GmapMap
             :center="{lat:coordinates.lat, lng:coordinates.lng}"
             :zoom="5"
@@ -41,6 +50,7 @@
 
           </i>
         </div>
+<!--        todo: implement saving ~3 thumbnail photo url-s to place object in DB-->
         <vue-horizontal-list v-if="imagesLoaded" class="horizontal" :items=this.images :options="horizontalListOptions" v-viewer="viewerOptions">
           <template v-slot:default="{ item }">
             <div class="image-container" >
@@ -49,8 +59,10 @@
           </template>
         </vue-horizontal-list>
       </div>
+<!--      todo: attractions (Open Trip API)-->
       <div class="grid" v-if="this.wikiDescription">
         <p>
+          <!--      todo: don't slice words in half-->
           {{ this.wikiDescription.slice(0, (this.wikiDescription.length)/2)}}
         </p>
         <p>
@@ -170,7 +182,7 @@ export default {
       return await queryLink.json()
     },
     async fetchFlagUrl() {
-      // todo: this method overrides countryCode variable which is retrieved from Place object
+      //  todo: this method overrides countryCode variable which is retrieved from Place object
       this.countryCode = this.place._links["city:country"].href.replace(/[&\/\\#,+_()$~%.'":*?<>{}a-z0-9]/g, '').toLowerCase();
       return `https://flagcdn.com/w320/${this.countryCode}.png`
     },

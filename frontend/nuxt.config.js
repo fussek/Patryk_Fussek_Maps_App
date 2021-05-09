@@ -35,6 +35,7 @@ export default {
     "~/plugins/bootstrapvue.js",
     "~/plugins/mapsplugin.js",
     "~/plugins/composition-api-plugin.js",
+    "~/plugins/vue-carousel-card.js",
     // { src: '~/plugins/vuetify-google-autocomplete.js', ssr: false},
     { src: "~/plugins/slide-menu.js", ssr: false },
     { src: '~/plugins/amcharts.js', ssr: false }
