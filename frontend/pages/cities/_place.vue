@@ -7,13 +7,21 @@
     <div v-if="place" class="place-container">
       <div>
         <div>
-          <CarouselCard :interval="7000" height="700px" arrow="always">
+          <CarouselCard :interval="7000" height="700px" arrow="hover" indicator-position="none" v-viewer="viewerOptions">
             <CarouselCardItem v-for="image in this.images" :key="image">
               <div class="image-container" >
                 <img :src="image.urls.regular" :full-src="image.urls.full"/>
               </div>
             </CarouselCardItem>
           </CarouselCard>
+
+          <vue-horizontal-list v-if="imagesLoaded" class="horizontal" :items=this.images :options="horizontalListOptions" v-viewer="viewerOptions">
+            <template v-slot:default="{ item }">
+              <div class="image-container-thumb" >
+                <img :src="item.urls.small" :full-src="item.urls.regular"/>
+              </div>
+            </template>
+          </vue-horizontal-list>
         </div>
         <div>
           <GmapMap
@@ -50,19 +58,13 @@
 
           </i>
         </div>
-<!--        todo: implement saving ~3 thumbnail photo url-s to place object in DB-->
-        <vue-horizontal-list v-if="imagesLoaded" class="horizontal" :items=this.images :options="horizontalListOptions" v-viewer="viewerOptions">
-          <template v-slot:default="{ item }">
-            <div class="image-container" >
-              <img :src="item.urls.small" :full-src="item.urls.regular"/>
-            </div>
-          </template>
-        </vue-horizontal-list>
+<!--        todo:  implement saving ~3 thumbnail photo url-s to place object in DB-->
+
       </div>
-<!--      todo: attractions (Open Trip API)-->
+<!--      todo:  attractions (Open Trip API)-->
       <div class="grid" v-if="this.wikiDescription">
         <p>
-          <!--      todo: don't slice words in half-->
+          <!--      todo:  don't slice words in half-->
           {{ this.wikiDescription.slice(0, (this.wikiDescription.length)/2)}}
         </p>
         <p>
@@ -124,9 +126,10 @@ export default {
       },
       horizontalListOptions: {
         responsive: [
-          { end: 576, size: 1 },
-          { start: 576, end: 768, size: 2 },
-          { size: 3 },
+          { end: 200, size: 1 },
+          { start: 200, end: 400, size: 2 },
+          { start: 400, end: 600, size: 3 },
+          { size: 4 },
         ],
       },
       viewerOptions: {
@@ -182,7 +185,7 @@ export default {
       return await queryLink.json()
     },
     async fetchFlagUrl() {
-      //  todo: this method overrides countryCode variable which is retrieved from Place object
+      //  todo:  this method overrides countryCode variable which is retrieved from Place object
       this.countryCode = this.place._links["city:country"].href.replace(/[&\/\\#,+_()$~%.'":*?<>{}a-z0-9]/g, '').toLowerCase();
       return `https://flagcdn.com/w320/${this.countryCode}.png`
     },
@@ -244,7 +247,7 @@ export default {
       return citiesList[0].cities[Math.floor(Math.random() * citiesList[0].cities.length)].name
     },
     getUnsplashImages() {
-      const unsplash = createApi({ accessKey: 'ePT1Bui9LN9iWox6z__-vq4TSx7hWR53I8DxRKYqn-k' });
+      const unsplash = createApi({ accessKey: 'YOUR_UNSPLASH_API_KEY' });
       unsplash.search.getPhotos({
         query: this.query,
         page: 1,
@@ -363,13 +366,15 @@ export default {
 .image{
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
 }
-.image-container {
+.image-container-thumb {
+  object-fit: cover;
+  max-height:250px;
+  min-width: 100%;
+  vertical-align: middle;
   cursor: pointer;
   border-radius: 3px;
   overflow: hidden;
   position: relative;
-  min-width: 350px;
-  min-height: 250px;
 }
 .horizontal {
   width: 100%;
