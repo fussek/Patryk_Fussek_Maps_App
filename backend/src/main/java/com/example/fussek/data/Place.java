@@ -18,20 +18,25 @@ public class Place {
 
     private String countryCode;
 
+    private String[] thumbnails;
+
     private Boolean visited;
 
     public Place() {
         super();
     }
 
-    public Place(String name, String fullName, String latitude, String longitude, String countryCode, Boolean visited) {
+    public Place(String name, String fullName, String latitude, String longitude, String countryCode, String[] thumbnails, Boolean visited) {
         this.name = name;
         this.fullName = fullName;
         this.latitude = latitude;
         this.longitude = longitude;
         this.countryCode = countryCode;
+        this.thumbnails = thumbnails;
         this.visited = visited;
     }
+
+//    todo: those getters are not used
 
     public String getId() {
         return id;
@@ -54,6 +59,8 @@ public class Place {
     }
 
     public String getCountryCode() { return countryCode; }
+
+    public String[] getThumbnails() { return thumbnails; }
 
     public Boolean getVisited() { return visited; }
 

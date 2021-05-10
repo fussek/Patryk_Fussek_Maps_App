@@ -7,23 +7,6 @@
     <div v-if="place" class="place-container">
       <div>
         <div>
-          <CarouselCard :interval="7000" height="700px" arrow="hover" indicator-position="none" v-viewer="viewerOptions">
-            <CarouselCardItem v-for="image in this.images" :key="image">
-              <div class="image-container" >
-                <img :src="image.urls.regular" :full-src="image.urls.full"/>
-              </div>
-            </CarouselCardItem>
-          </CarouselCard>
-
-          <vue-horizontal-list v-if="imagesLoaded" class="horizontal" :items=this.images :options="horizontalListOptions" v-viewer="viewerOptions">
-            <template v-slot:default="{ item }">
-              <div class="image-container-thumb" >
-                <img :src="item.urls.small" :full-src="item.urls.regular"/>
-              </div>
-            </template>
-          </vue-horizontal-list>
-        </div>
-        <div>
           <GmapMap
             :center="{lat:coordinates.lat, lng:coordinates.lng}"
             :zoom="5"
@@ -55,22 +38,37 @@
                 Add to your places!
               </button>
             </h1>
-
           </i>
         </div>
-<!--        todo:  implement saving ~3 thumbnail photo url-s to place object in DB-->
-
+        <div>
+<!--          todo: change to vue-horizontal (then hide scrollbar)-->
+          <vue-horizontal-list v-if="imagesLoaded" class="horizontal" :items=this.images :options="horizontalListOptions" v-viewer="viewerOptions">
+            <template v-slot:default="{ item }">
+              <div class="image-container-thumb" >
+                <img :src="item.urls.small" :full-src="item.urls.regular"/>
+              </div>
+            </template>
+          </vue-horizontal-list>
+        </div>
       </div>
-<!--      todo:  attractions (Open Trip API)-->
+<!--      todo: attractions (Open Trip API)-->
       <div class="grid" v-if="this.wikiDescription">
         <p>
-          <!--      todo:  don't slice words in half-->
+          <!--      todo: don't slice words in half-->
           {{ this.wikiDescription.slice(0, (this.wikiDescription.length)/2)}}
         </p>
         <p>
           {{this.wikiDescription.slice((this.wikiDescription.length)/2, this.wikiDescription.length -1)}}
         </p>
       </div>
+      <div class="title"> </div>
+      <CarouselCard :interval="7000" height="700px" arrow="hover" initial-index="4" indicator-position="none" v-viewer="viewerOptions">
+        <CarouselCardItem v-for="image in this.images" :key="image">
+          <div class="image-container" >
+            <img :src="image.urls.regular" :full-src="image.urls.full"/>
+          </div>
+        </CarouselCardItem>
+      </CarouselCard>
       <NuxtLink class="link" to="/places">⌂</NuxtLink>
       <NuxtLink class="link" :to="`/cities/${getRandomPlace()}`">⧖</NuxtLink>
     </div>
@@ -185,7 +183,7 @@ export default {
       return await queryLink.json()
     },
     async fetchFlagUrl() {
-      //  todo:  this method overrides countryCode variable which is retrieved from Place object
+      //  todo: this method overrides countryCode variable which is retrieved from Place object
       this.countryCode = this.place._links["city:country"].href.replace(/[&\/\\#,+_()$~%.'":*?<>{}a-z0-9]/g, '').toLowerCase();
       return `https://flagcdn.com/w320/${this.countryCode}.png`
     },
@@ -231,7 +229,8 @@ export default {
         this.place.full_name,
         this.coordinates.lat,
         this.coordinates.lng,
-        this.fetchCountryCode()).then((data) => {
+        this.fetchCountryCode(),
+        this.images.map(function (image) { return image.urls.small}).slice(0,3)).then((data) => {
         this.$emit('created', data)
       })
       alert('Added !')
@@ -367,13 +366,18 @@ export default {
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
 }
 .image-container-thumb {
+  width: 24%;
+  height: 15rem;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  cursor: pointer;
   object-fit: cover;
   max-height:250px;
   min-width: 100%;
   vertical-align: middle;
-  cursor: pointer;
-  border-radius: 3px;
-  overflow: hidden;
+  background-position: center center;
+  background-repeat: no-repeat;
   position: relative;
 }
 .horizontal {
