@@ -4,7 +4,8 @@
     <h1 class="title">
       {{ place.full_name }}
     </h1>
-    <div v-if="place" class="place-container">
+    <button @click="showAttractions = !showAttractions">Show Top 10 Attractions</button>
+    <div v-if="place && showAttractions" class="place-container">
       <div>
         <div>
           <GmapMap
@@ -31,7 +32,7 @@
               {{ getPopulation() }}
             </h1>
             <h1 class="title">
-              <button v-if="isAlreadyAdded" class="button-delete" @click=deleteFromPlaces()>
+              <button v-if="isAlreadyAdded" class="button-delete" @click=deleteFromPlaces(place.id)>
                 Delete from your places
               </button>
               <button v-else class="button-add" @click=addToPlaces()>
@@ -41,7 +42,7 @@
           </i>
         </div>
         <div>
-<!--          todo: change to vue-horizontal (then hide scrollbar)-->
+<!--          todo:  change to vue-horizontal (then hide scrollbar)-->
           <vue-horizontal-list v-if="imagesLoaded" class="horizontal" :items=this.images :options="horizontalListOptions" v-viewer="viewerOptions">
             <template v-slot:default="{ item }">
               <div class="image-container-thumb" >
@@ -51,10 +52,10 @@
           </vue-horizontal-list>
         </div>
       </div>
-<!--      todo: attractions (Open Trip API)-->
+<!--      todo:  attractions (Open Trip API)-->
       <div class="grid" v-if="this.wikiDescription">
         <p>
-          <!--      todo: don't slice words in half-->
+          <!--      todo:  don't slice words in half-->
           {{ this.wikiDescription.slice(0, (this.wikiDescription.length)/2)}}
         </p>
         <p>
@@ -62,8 +63,8 @@
         </p>
       </div>
       <div class="title"> </div>
-      <CarouselCard :interval="7000" height="700px" arrow="hover" initial-index="4" indicator-position="none" v-viewer="viewerOptions">
-        <CarouselCardItem v-for="image in this.images" :key="image">
+      <CarouselCard :interval="7000" height="700px" arrow="hover" indicator-position="none" v-viewer="viewerOptions">
+        <CarouselCardItem v-for="image in this.images">
           <div class="image-container" >
             <img :src="image.urls.regular" :full-src="image.urls.full"/>
           </div>
@@ -71,6 +72,33 @@
       </CarouselCard>
       <NuxtLink class="link" to="/places">⌂</NuxtLink>
       <NuxtLink class="link" :to="`/cities/${getRandomPlace()}`">⧖</NuxtLink>
+    </div>
+    <div v-else-if="place && !showAttractions" class="place-container">
+      <div v-if="attractionsData">
+        <div>
+          <GmapMap ref="gmap"
+            :center="{lat:coordinates.lat, lng:coordinates.lng}"
+            :options="mapStyle"
+            :zoom="14"
+            map-type-id="roadmap"
+            style="width: 100%; height: 600px; box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1)"
+          >
+            <GmapMarker
+              v-for="attraction in attractionsData"
+              :key="attraction.id"
+              :position="{lat:attraction.location.lat, lng:attraction.location.lng}"
+            />
+          </GmapMap>
+        </div>
+        <div class="row">
+          <div class="col">
+            <AttractionCard v-for="attraction in attractionsData.slice(0,4)" :key="attraction.id" :attraction="attraction"/>
+          </div>
+          <div class="col">
+            <AttractionCard v-for="attraction in attractionsData.slice(5,9)" :key="attraction.id" :attraction="attraction"/>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -81,6 +109,7 @@ import Button from "~/components/Button";
 import { citiesList } from "~/assets/cities.js";
 import { createApi } from 'unsplash-js';
 import SmallCardDisplay from "~/components/SmallCardDisplay";
+import AttractionCard from "~/components/AttractionCard";
 import VueHorizontalList from "vue-horizontal-list"
 import SideBar from "~/components/SideBar";
 import fetch from 'cross-fetch';
@@ -97,6 +126,7 @@ export default {
     SideBar,
     VueHorizontalList,
     SmallCardDisplay,
+    AttractionCard,
     Button
   },
   props:{
@@ -150,6 +180,8 @@ export default {
       images: [],
       imagesLoaded: false,
       isAlreadyAdded: false,
+      showAttractions: true,
+      attractionsData: null,
       showMap: false,
       flagUrl: null,
       countryCode: null,
@@ -172,6 +204,7 @@ export default {
       await this.getUnsplashImages()
       await this.fetchWikipediaInfo()
       this.isAlreadyAdded = await this.findInUserPlaces()
+      await this.fetchPlaceAttractions()
     }
   },
 
@@ -183,7 +216,7 @@ export default {
       return await queryLink.json()
     },
     async fetchFlagUrl() {
-      //  todo: this method overrides countryCode variable which is retrieved from Place object
+      //  todo:  this method overrides countryCode variable which is retrieved from Place object
       this.countryCode = this.place._links["city:country"].href.replace(/[&\/\\#,+_()$~%.'":*?<>{}a-z0-9]/g, '').toLowerCase();
       return `https://flagcdn.com/w320/${this.countryCode}.png`
     },
@@ -191,6 +224,25 @@ export default {
       const res = await fetch(`https://en.wikipedia.org/w/api.php?format=json&origin=*&action=query&prop=extracts&exintro=1&explaintext=1&titles=${this.place.name}`)
       const data = await res.json()
       this.wikiDescription = Object.entries(data.query.pages)[0][1].extract
+    },
+    async fetchPlaceAttractions(){
+      // todo: waste of api calls (free limit 1000/month)
+      const res = await fetch(`https://api.sygictravelapi.com/1.2/en/places/list?query=${this.place.name}`, {
+        method: 'GET',
+        headers: {
+          'x-api-key': 'API_KEY'
+        }
+      });
+      const data = await res.json()
+        const response = await fetch(`https://api.sygictravelapi.com/1.1/en/places/list?parents=${data.data.places[0].id}&categories=sightseeing&limit=10`, {
+        method: 'GET',
+        headers: {
+          'x-api-key': 'API_KEY'
+        }
+      });
+      const detailedData = await response.json()
+      console.log(detailedData)
+      this.attractionsData = detailedData.data.places
     },
     getLatitude() {
       return this.place.location.latlon.latitude
@@ -236,8 +288,11 @@ export default {
       alert('Added !')
       this.isAlreadyAdded = true
     },
-    async deleteFromPlaces() {
-      this.$services.places.deleteItem(this.place.id).then(() => {
+    // todo: doesnt delete lol
+    async deleteFromPlaces(id) {
+      console.log(id)
+      this.$services.places.deleteItem(id).then(() => {
+        this.$emit('deleted', id)
         alert('Deleted !')
       })
       this.isAlreadyAdded = false
@@ -246,7 +301,7 @@ export default {
       return citiesList[0].cities[Math.floor(Math.random() * citiesList[0].cities.length)].name
     },
     getUnsplashImages() {
-      const unsplash = createApi({ accessKey: 'YOUR_UNSPLASH_API_KEY' });
+      const unsplash = createApi({ accessKey: 'API_KEY' });
       unsplash.search.getPhotos({
         query: this.query,
         page: 1,
@@ -275,6 +330,8 @@ export default {
       var country = this.place.full_name.substring(n + 2);
       return countries.getAlpha2Code(country, "en")
     }
+  },
+  watch:{
   }
 }
 </script>
@@ -366,19 +423,17 @@ export default {
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
 }
 .image-container-thumb {
-  width: 24%;
-  height: 15rem;
+  /*todo: !!!!!!  THIS ONE WORKS !!!!!!!!!*/
+  margin-left: auto;
+  margin-right: auto;
+  height: 250px;
+  cursor: pointer;
   border-radius: 0.5rem;
   overflow: hidden;
-  margin-bottom: 1.5rem;
-  cursor: pointer;
-  object-fit: cover;
-  max-height:250px;
-  min-width: 100%;
-  vertical-align: middle;
-  background-position: center center;
-  background-repeat: no-repeat;
   position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 .horizontal {
   width: 100%;
