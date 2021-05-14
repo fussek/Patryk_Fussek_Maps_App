@@ -1,4 +1,3 @@
-// todo: remove duplicates
 export const citiesList = [
   {
     id: 1,
@@ -1086,10 +1085,6 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Adelaide'
-      },
-      {
-        href: '',
         name: 'Agra'
       },
       {
@@ -1114,19 +1109,11 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Almaty'
-      },
-      {
-        href: '',
         name: 'Amman'
       },
       {
         href: '',
         name: 'Amritsar'
-      },
-      {
-        href: '',
-        name: 'Ankara'
       },
       {
         href: '',
@@ -1138,10 +1125,6 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Baku'
-      },
-      {
-        href: '',
         name: 'Bandung'
       },
       {
@@ -1150,15 +1133,7 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Bangkok'
-      },
-      {
-        href: '',
         name: 'Baotou'
-      },
-      {
-        href: '',
-        name: 'Barcelona'
       },
       {
         href: '',
@@ -1174,19 +1149,7 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Beijing'
-      },
-      {
-        href: '',
-        name: 'Beirut'
-      },
-      {
-        href: '',
         name: 'Belem'
-      },
-      {
-        href: '',
-        name: 'Belgrade'
       },
       {
         href: '',
@@ -1202,19 +1165,7 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Berlin'
-      },
-      {
-        href: '',
         name: 'Bhopal'
-      },
-      {
-        href: '',
-        name: 'Birmingham'
-      },
-      {
-        href: '',
-        name: 'Bogota'
       },
       {
         href: '',
@@ -1226,22 +1177,6 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Brisbane'
-      },
-      {
-        href: '',
-        name: 'Bucharest'
-      },
-      {
-        href: '',
-        name: 'Budapest'
-      },
-      {
-        href: '',
-        name: 'Buenos Aires'
-      },
-      {
-        href: '',
         name: 'Bursa'
       },
       {
@@ -1250,27 +1185,11 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Cairo'
-      },
-      {
-        href: '',
         name: 'Cali'
       },
       {
         href: '',
         name: 'Campinas'
-      },
-      {
-        href: '',
-        name: 'Capetown'
-      },
-      {
-        href: '',
-        name: 'Caracas'
-      },
-      {
-        href: '',
-        name: 'Casablanca'
       },
       {
         href: '',
@@ -1294,14 +1213,6 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Chennai'
-      },
-      {
-        href: '',
-        name: 'Chicago'
-      },
-      {
-        href: '',
         name: 'Chittagong'
       },
       {
@@ -1318,15 +1229,7 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Copenhagen'
-      },
-      {
-        href: '',
         name: 'Cordoba'
-      },
-      {
-        href: '',
-        name: 'Curitiba'
       },
       {
         href: '',
@@ -1346,10 +1249,6 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Dallas'
-      },
-      {
-        href: '',
         name: 'Damascus'
       },
       {
@@ -1359,10 +1258,6 @@ export const citiesList = [
       {
         href: '',
         name: 'Datong'
-      },
-      {
-        href: '',
-        name: 'Delhi'
       },
       {
         href: '',
@@ -1410,10 +1305,6 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Fukuoka'
-      },
-      {
-        href: '',
         name: 'Fuzhou'
       },
       {
@@ -1426,19 +1317,11 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Guadalajara'
-      },
-      {
-        href: '',
         name: 'Guangzhou'
       },
       {
         href: '',
         name: 'Guarulhos'
-      },
-      {
-        href: '',
-        name: 'Guatamala City'
       },
       {
         href: '',
@@ -1459,10 +1342,6 @@ export const citiesList = [
       {
         href: '',
         name: 'Haiphong'
-      },
-      {
-        href: '',
-        name: 'Hamburg'
       },
       {
         href: '',
@@ -1490,35 +1369,11 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Havana'
-      },
-      {
-        href: '',
         name: 'Hefei'
       },
       {
         href: '',
         name: 'Hiroshima'
-      },
-      {
-        href: '',
-        name: 'Ho Chi Minh City'
-      },
-      {
-        href: '',
-        name: 'Hong Kong'
-      },
-      {
-        href: '',
-        name: 'Houston'
-      },
-      {
-        href: '',
-        name: 'Hyderabad'
-      },
-      {
-        href: '',
-        name: 'Hyderabad'
       },
       {
         href: '',
@@ -1542,19 +1397,11 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Istanbul'
-      },
-      {
-        href: '',
         name: 'Izmir'
       },
       {
         href: '',
         name: 'Jaipur'
-      },
-      {
-        href: '',
-        name: 'Jakarta'
       },
       {
         href: '',
@@ -1571,10 +1418,6 @@ export const citiesList = [
       {
         href: '',
         name: 'Jodphur'
-      },
-      {
-        href: '',
-        name: 'Johannesburg'
       },
       {
         href: '',
@@ -1622,10 +1465,6 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Kiev'
-      },
-      {
-        href: '',
         name: 'Kinshasa'
       },
       {
@@ -1646,23 +1485,7 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Kuala Lumpur'
-      },
-      {
-        href: '',
         name: 'Kunming'
-      },
-      {
-        href: '',
-        name: 'Kyoto'
-      },
-      {
-        href: '',
-        name: 'La Paz'
-      },
-      {
-        href: '',
-        name: 'Lagos'
       },
       {
         href: '',
@@ -1675,14 +1498,6 @@ export const citiesList = [
       {
         href: '',
         name: 'Leon'
-      },
-      {
-        href: '',
-        name: 'Lima'
-      },
-      {
-        href: '',
-        name: 'Los Angeles'
       },
       {
         href: '',
@@ -1710,10 +1525,6 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Madrid'
-      },
-      {
-        href: '',
         name: 'Maiduguri'
       },
       {
@@ -1722,15 +1533,7 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Managua'
-      },
-      {
-        href: '',
         name: 'Manaus'
-      },
-      {
-        href: '',
-        name: 'Manila'
       },
       {
         href: '',
@@ -1754,10 +1557,6 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Medellin'
-      },
-      {
-        href: '',
         name: 'Medina'
       },
       {
@@ -1766,23 +1565,7 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Melbourne'
-      },
-      {
-        href: '',
         name: 'Mexicali'
-      },
-      {
-        href: '',
-        name: 'Mexico City'
-      },
-      {
-        href: '',
-        name: 'Milan'
-      },
-      {
-        href: '',
-        name: 'Minsk'
       },
       {
         href: '',
@@ -1791,18 +1574,6 @@ export const citiesList = [
       {
         href: '',
         name: 'Monterrey'
-      },
-      {
-        href: '',
-        name: 'Montevideo'
-      },
-      {
-        href: '',
-        name: 'Montreal'
-      },
-      {
-        href: '',
-        name: 'Moscow'
       },
       {
         href: '',
@@ -1818,19 +1589,11 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Munich'
-      },
-      {
-        href: '',
         name: 'Nagoya'
       },
       {
         href: '',
         name: 'Nagpur'
-      },
-      {
-        href: '',
-        name: 'Nairobi'
       },
       {
         href: '',
@@ -1882,10 +1645,6 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Osaka'
-      },
-      {
-        href: '',
         name: 'Palembang'
       },
       {
@@ -1898,23 +1657,7 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Perth'
-      },
-      {
-        href: '',
         name: 'Peshawar'
-      },
-      {
-        href: '',
-        name: 'Philadelphia'
-      },
-      {
-        href: '',
-        name: 'Phnom Penh'
-      },
-      {
-        href: '',
-        name: 'Phoenix'
       },
       {
         href: '',
@@ -1927,14 +1670,6 @@ export const citiesList = [
       {
         href: '',
         name: 'Port-Au-Prince'
-      },
-      {
-        href: '',
-        name: 'Porto Alegre'
-      },
-      {
-        href: '',
-        name: 'Prague'
       },
       {
         href: '',
@@ -1958,10 +1693,6 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Quito'
-      },
-      {
-        href: '',
         name: 'Rabat'
       },
       {
@@ -1982,18 +1713,6 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Rio De Janeiro'
-      },
-      {
-        href: '',
-        name: 'Riyadh'
-      },
-      {
-        href: '',
-        name: 'Rome'
-      },
-      {
-        href: '',
         name: 'Rosario'
       },
       {
@@ -2010,31 +1729,11 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'San Antonio'
-      },
-      {
-        href: '',
-        name: 'San Diego'
-      },
-      {
-        href: '',
         name: 'Sanaa'
       },
       {
         href: '',
         name: 'Santa Cruz'
-      },
-      {
-        href: '',
-        name: 'Santiago'
-      },
-      {
-        href: '',
-        name: 'Santo Domingo'
-      },
-      {
-        href: '',
-        name: 'Sao Paulo'
       },
       {
         href: '',
@@ -2054,14 +1753,6 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Seoul'
-      },
-      {
-        href: '',
-        name: 'Shanghai'
-      },
-      {
-        href: '',
         name: 'Shenyang'
       },
       {
@@ -2078,27 +1769,11 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Shubra El Kheima'
-      },
-      {
-        href: '',
-        name: 'Singapore'
-      },
-      {
-        href: '',
-        name: 'Sofia'
-      },
-      {
-        href: '',
         name: 'Soweto'
       },
       {
         href: '',
         name: 'St Petersburg'
-      },
-      {
-        href: '',
-        name: 'Stockholm'
       },
       {
         href: '',
@@ -2114,19 +1789,11 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Sydney'
-      },
-      {
-        href: '',
         name: 'Tabriz'
       },
       {
         href: '',
         name: 'Taichung'
-      },
-      {
-        href: '',
-        name: 'Taipei'
       },
       {
         href: '',
@@ -2138,19 +1805,7 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Tashkent'
-      },
-      {
-        href: '',
-        name: 'Tbilisi'
-      },
-      {
-        href: '',
         name: 'Tegucigalpa'
-      },
-      {
-        href: '',
-        name: 'Tehran'
       },
       {
         href: '',
@@ -2162,23 +1817,11 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Tokyo'
-      },
-      {
-        href: '',
-        name: 'Toronto'
-      },
-      {
-        href: '',
         name: 'Tripoli'
       },
       {
         href: '',
         name: 'Tshwane (Pretoria)'
-      },
-      {
-        href: '',
-        name: 'Tunis'
       },
       {
         href: '',
@@ -2198,23 +1841,11 @@ export const citiesList = [
       },
       {
         href: '',
-        name: 'Valencia'
-      },
-      {
-        href: '',
         name: 'Varanasi'
       },
       {
         href: '',
-        name: 'Vienna'
-      },
-      {
-        href: '',
         name: 'Volgograd'
-      },
-      {
-        href: '',
-        name: 'Warsaw'
       },
       {
         href: '',
@@ -2239,10 +1870,6 @@ export const citiesList = [
       {
         href: '',
         name: 'Yaounde'
-      },
-      {
-        href: '',
-        name: 'Yerevan'
       },
       {
         href: '',
