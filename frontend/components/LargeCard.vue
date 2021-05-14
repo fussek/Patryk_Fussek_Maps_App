@@ -2,11 +2,10 @@
   <nuxt-link :to="`/cities/${place.name}`" class="card">
       <div v-if="pictureUrl" class="image-container">
         <img class="large-img" :src=pictureUrl alt=""
-             @mouseover="$emit('markCountry', place.countryCode)"
+             @mouseover="$emit('markCountry', place.countryCode, place.fullName)"
              @mouseleave="$emit('unmarkCountry')"/>
       </div>
-      <div class="subtitle">CITY • COUNTRY</div>
-
+      <div class="subtitle">CITY • REGION • COUNTRY</div>
       <h3>{{ getTitle(place) }}</h3>
       <p>{{ place.id }}</p>
   </nuxt-link>
@@ -32,9 +31,14 @@
           return title
         },
         async getPlacePicture () {
-          const res = await fetch('https://picsum.photos/350/250')
-          const data = await res
-          return data.url
+          if (this.place.thumbnails && this.place.thumbnails.length >= 1){
+            return this.place.thumbnails[Math.floor(Math.random() * this.place.thumbnails.length)]
+          } else {
+            const res = await fetch('https://picsum.photos/350/250')
+            const data = await res
+            return data.url
+          }
+
         }
       }
     }
@@ -52,6 +56,8 @@
 }
 .large-img {
   border-radius: 0.5rem;
+  width: 350px;
+  height: 250px;
 }
 
 
