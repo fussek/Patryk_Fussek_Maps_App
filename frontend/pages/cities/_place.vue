@@ -52,7 +52,6 @@
           </vue-horizontal-list>
         </div>
       </div>
-<!--      todo:  attractions (Open Trip API)-->
       <div class="grid" v-if="this.wikiDescription">
         <p>
           <!--      todo:  don't slice words in half-->
@@ -140,7 +139,8 @@ export default {
       },
       place: {
         type: Array,
-        _links: undefined
+        _links: undefined,
+        id: null
       },
       mapStyle: {
         zoomControl: false,
@@ -241,7 +241,6 @@ export default {
         }
       });
       const detailedData = await response.json()
-      console.log(detailedData)
       this.attractionsData = detailedData.data.places
     },
     getLatitude() {
@@ -272,7 +271,10 @@ export default {
       let i;
       for (i = 0; i < data.length; i++) {
         contains = this.alternateCityNames.some(alternateName => data[i].name === alternateName.name)
-        if (contains) break
+        if (contains) {
+          this.place.id = data[i].id
+          break
+        }
       }
       return contains;
     },
@@ -288,11 +290,10 @@ export default {
       alert('Added !')
       this.isAlreadyAdded = true
     },
-    // todo: doesnt delete lol
     async deleteFromPlaces(id) {
       console.log(id)
       this.$services.places.deleteItem(id).then(() => {
-        this.$emit('deleted', id)
+        this.$emit('delete', id)
         alert('Deleted !')
       })
       this.isAlreadyAdded = false
