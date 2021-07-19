@@ -13,6 +13,15 @@
               :places="places"/>
           </div>
         </div>
+        <div class="cards-container">
+        <h1 class="title">
+          Browse cities:
+        </h1>
+          <gmap-autocomplete ref="gmapAutocomplete" @place_changed="setPlace"/>
+          <NuxtLink class="link" :to="`/cities/${this.placeQuery}`">
+            <button>Discover!</button>
+          </NuxtLink>
+        </div>
         <div class="large-cards-container">
           <LargeCardDisplay style="margin: 0 auto;"
                             :places="places"
@@ -55,6 +64,8 @@ export default {
 
   data () {
     return {
+      place: null,
+      placeQuery: null,
       places: {
         type: Array
       },
@@ -77,10 +88,14 @@ export default {
       return await this.$services.places.findAll()
     },
     async deleteFromDB(id){
+      console.log(id)
       this.$services.places.deleteItem(id).then(() => {
-        this.$emit('deleted', id)
+        this.$emit('delete', id)
       })
       this.places = await this.fetchData()
+    },
+    setPlace(place) {
+      this.placeQuery = place.name
     },
     getRandomPlace() {
       return citiesList[0].cities[Math.floor(Math.random() * citiesList[0].cities.length)].name

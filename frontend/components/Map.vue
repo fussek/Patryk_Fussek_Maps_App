@@ -7,8 +7,6 @@
           <h1>Your coordinates:</h1>
           <p>{{ coordinates.lat }} Latitude, {{ coordinates.lng }} Longitude</p>
           <p>
-            <gmap-autocomplete ref="gmapAutocomplete" @place_changed="setPlace"/>
-            <button class="add-button" @click="usePlace">Add</button>
           </p>
           <GmapMap
             :center="{lat:coordinates.lat, lng:coordinates.lng}"
@@ -50,8 +48,6 @@
 <script>
 import styles from 'assets/MapStyle'
 import SavedPlacesList from "~/components/SavedPlacesList";
-const EMPTY_THUMBNAILS_ARRAY = [];
-// import VuetifyGoogleAutocomplete from 'vuetify-google-autocomplete'
 
 export default {
   name: 'Map',
@@ -73,7 +69,6 @@ export default {
         lat: 0,
         lng: 0
       },
-
       place: null,
       mapStyle: {
         styles
@@ -117,14 +112,15 @@ export default {
       return await this.$services.places.findAll()
     },
     async createBackendItem () {
-      await this.$services.places.create(this.place.name,
-        this.place.formatted_address,
-        this.coordinates.lat,
-        this.coordinates.lng,
-        this.fetchCountryCode(),
-        EMPTY_THUMBNAILS_ARRAY).then((data) => {
-        this.$emit('created', data)
-      })
+        await this.$services.places.create(this.place.name,
+          this.place.formatted_address,
+          this.coordinates.lat,
+          this.coordinates.lng,
+          this.fetchCountryCode(),
+          []).then((data) => {
+          this.$emit('created', data)
+        })
+
     },
     fetchCountryCode() {
       var countries = require("i18n-iso-countries");
