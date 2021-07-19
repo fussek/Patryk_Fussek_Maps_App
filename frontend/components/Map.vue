@@ -103,24 +103,11 @@ export default {
           lat: this.place.geometry.location.lat(),
           lng: this.place.geometry.location.lng(),
         };
-        await this.createBackendItem()
-        this.places = await this.fetchData()
       }
     },
     //todo: refactor -> backend calls in one place
     async fetchData () {
       return await this.$services.places.findAll()
-    },
-    async createBackendItem () {
-        await this.$services.places.create(this.place.name,
-          this.place.formatted_address,
-          this.coordinates.lat,
-          this.coordinates.lng,
-          this.fetchCountryCode(),
-          []).then((data) => {
-          this.$emit('created', data)
-        })
-
     },
     fetchCountryCode() {
       var countries = require("i18n-iso-countries");
