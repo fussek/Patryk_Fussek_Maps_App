@@ -11,7 +11,7 @@ To start the database run the following command in the terminal from your projec
 # backend
 
 To run the backend localy at your machinge, execute the MapsAppApplication process in your IDE
-![Alt text](frontend/assets/pictures/execute_backend.png?raw=true "Optional Title")
+![Alt text](frontend/assets/pictures/execute_backend.PNG?raw=true "Optional Title")
 
 
 # frontend
