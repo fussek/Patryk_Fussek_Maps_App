@@ -11,7 +11,7 @@ To start the database run the following command in the terminal from your projec
 # backend
 
 To run the backend localy at your machinge, execute the MapsAppApplication process in your IDE
-![Alt text](assets/pictures/execute backend.png?raw=true "Optional Title")
+![Alt text](assets/pictures/execute_backend.png?raw=true "Optional Title")
 
 
 # frontend
@@ -31,13 +31,13 @@ A view of one of the cities, displaying basic information like region, country, 
 ![Alt text](assets/pictures/paris.png?raw=true "Optional Title")
 ### Photo browser
 Carousel browser of selected photos, with hyperlinks to originals in HQ
-![Alt text](assets/pictures/paris ss.png?raw=true "Optional Title")
+![Alt text](assets/pictures/paris_ss.png?raw=true "Optional Title")
 ### Profile tab
 Profile tab showcasing all the saved places on chart integrated with amCharts JavaScript library, beta version of Friends List
 ![Alt text](assets/pictures/profile.png?raw=true "Optional Title")
 ### Route planer tab
 Beta version functionality with Google Directions API
-![Alt text](assets/pictures/plan route.png?raw=true "Optional Title")
+![Alt text](assets/pictures/plan_route.png?raw=true "Optional Title")
 
 
 
