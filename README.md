@@ -2,6 +2,11 @@
 This is a portfolio project showcasing the usage of fullstack web development frameworks & technologies. The app is structured as follows: the backend using Java with Spring
 and the server-side-rendered frontend using VueJS and NUXTJS. Several APIs are integrated in the project, f.ex several Google services APIs, Unisplash API, Wikipedia API, Sygic Travel API, Teleport API and others. For storage, a MongoDB database is deployed as a Docker container
 
+    <--- NOTE --->
+    IN ORDER TO BE ABLE TO FULLY RUN THE CODE ON YOUR MACHINE YOU NEED TO OBTAIN SEVERAL API-KEYS, 
+    MOST IMPORTANTLY THE GOOGLE MAPS API, BUT ALSO UNISPLASH API, SYGIC TRAVEL API
+    <------------>
+
 # database
 
 To start the database run the following command in the terminal from your project root folder. Leave the terminal window open.
